@@ -18,8 +18,13 @@ export interface ExcludedUser {
 export class UsersService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async create(createUserDto: CreateUserDto): Promise<AdminUser> {
-    return await this.prismaService.adminUser.create({ data: createUserDto });
+  async create(createUserDto: CreateUserDto): Promise<ExcludedUser> {
+    const createdUser = await this.prismaService.adminUser.create({
+      data: createUserDto,
+    });
+    const excludedUser = this.exclude(createdUser, ['password']);
+
+    return excludedUser;
   }
 
   async findAll(): Promise<ExcludedUser[]> {
@@ -47,21 +52,32 @@ export class UsersService {
     return excluded;
   }
 
-  async update(id: string, updateUserDto: UpdateUserDto): Promise<AdminUser> {
+  async update(
+    id: string,
+    updateUserDto: UpdateUserDto,
+  ): Promise<ExcludedUser> {
     const user = await this.findOne(id);
 
-    return await this.prismaService.adminUser.update({
+    const updatedUser = await this.prismaService.adminUser.update({
       where: { id: user.id },
       data: updateUserDto,
     });
+
+    const excludedUser = this.exclude(updatedUser, ['password']);
+
+    return excludedUser;
   }
 
-  async remove(id: string): Promise<AdminUser> {
+  async remove(id: string): Promise<ExcludedUser> {
     const user = await this.findOne(id);
 
-    return await this.prismaService.adminUser.delete({
+    const removedUser = await this.prismaService.adminUser.delete({
       where: { id: user.id },
     });
+
+    const excludedUser = this.exclude(removedUser, ['password']);
+
+    return excludedUser;
   }
 
   private exclude<AdminUser, Key extends keyof AdminUser>(
