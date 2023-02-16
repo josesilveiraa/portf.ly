@@ -18,9 +18,9 @@ model AdminUser {
 }
 
 model Project {
-  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
   title       String
   repository  String
-  description String
+  description String?
   readme      String
 }
