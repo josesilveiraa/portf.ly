@@ -22,3 +22,9 @@ $ yarn:start:dev
 - Prisma
 - MongoDB
 - Jest
+
+## ✅ TODO
+- [] Unit testing
+- [] E2E testing
+- [] Authentication and authorization
+- [] (Maybe) React frontend
