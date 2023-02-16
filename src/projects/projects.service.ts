@@ -3,7 +3,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { Prisma, Project } from '@prisma/client';
+import { Project } from '@prisma/client';
 import { PrismaService } from 'src/database/prisma.service';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
@@ -23,17 +23,15 @@ export class ProjectsService {
   }
 
   async findOne(id: string): Promise<Project> {
-    try {
-      return await this.prismaService.project.findUniqueOrThrow({
-        where: { id },
-      });
-    } catch (e) {
-      if (e instanceof Prisma.PrismaClientKnownRequestError) {
-        if (e.code === 'P2023') throw new BadRequestException('Invalid ID.');
-
-        if (e.code === 'P2025') throw new NotFoundException('User not found.');
-      }
+    if (id.length !== 24) {
+      throw new BadRequestException('`id` must be 24-character long.');
     }
+
+    const user = await this.prismaService.project.findUnique({ where: { id } });
+
+    if (!user) throw new NotFoundException('User not found.');
+
+    return user;
   }
 
   async update(
