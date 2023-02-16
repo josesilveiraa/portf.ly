@@ -1,26 +1,55 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
+import { AdminUser } from '@prisma/client';
+import { PrismaService } from 'src/database/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  constructor(private readonly prismaService: PrismaService) {}
+
+  async create(createUserDto: CreateUserDto): Promise<AdminUser> {
+    return await this.prismaService.adminUser.create({ data: createUserDto });
   }
 
-  findAll() {
-    return `This action returns all users`;
+  async findAll(): Promise<AdminUser[]> {
+    return await this.prismaService.adminUser.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: string): Promise<AdminUser> {
+    if (id.length !== 24) {
+      throw new BadRequestException('`id` must be 24-character long.');
+    }
+
+    const user = await this.prismaService.adminUser.findUnique({
+      where: { id },
+    });
+
+    if (!user) {
+      throw new NotFoundException('User not found.');
+    }
+
+    return user;
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: string, updateUserDto: UpdateUserDto): Promise<AdminUser> {
+    const user = await this.findOne(id);
+
+    return await this.prismaService.adminUser.update({
+      where: { id: user.id },
+      data: updateUserDto,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: string): Promise<AdminUser> {
+    const user = await this.findOne(id);
+
+    return await this.prismaService.adminUser.delete({
+      where: { id: user.id },
+    });
   }
 }
