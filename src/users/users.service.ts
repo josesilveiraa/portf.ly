@@ -8,6 +8,12 @@ import { PrismaService } from 'src/database/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
+export interface ExcludedUser {
+  id: string;
+  email: string;
+  username: string;
+}
+
 @Injectable()
 export class UsersService {
   constructor(private readonly prismaService: PrismaService) {}
@@ -16,11 +22,14 @@ export class UsersService {
     return await this.prismaService.adminUser.create({ data: createUserDto });
   }
 
-  async findAll(): Promise<AdminUser[]> {
-    return await this.prismaService.adminUser.findMany();
+  async findAll(): Promise<ExcludedUser[]> {
+    const users = await this.prismaService.adminUser.findMany({});
+    const excluded = users.map((user) => this.exclude(user, ['password']));
+
+    return excluded;
   }
 
-  async findOne(id: string): Promise<AdminUser> {
+  async findOne(id: string): Promise<ExcludedUser> {
     if (id.length !== 24) {
       throw new BadRequestException('`id` must be 24-character long.');
     }
@@ -33,7 +42,9 @@ export class UsersService {
       throw new NotFoundException('User not found.');
     }
 
-    return user;
+    const excluded = this.exclude(user, ['password']);
+
+    return excluded;
   }
 
   async update(id: string, updateUserDto: UpdateUserDto): Promise<AdminUser> {
@@ -51,5 +62,15 @@ export class UsersService {
     return await this.prismaService.adminUser.delete({
       where: { id: user.id },
     });
+  }
+
+  private exclude<AdminUser, Key extends keyof AdminUser>(
+    user: AdminUser,
+    keys: Key[],
+  ): Omit<AdminUser, Key> {
+    for (const key of keys) {
+      delete user[key];
+    }
+    return user;
   }
 }
