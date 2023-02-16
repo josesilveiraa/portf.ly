@@ -35,7 +35,7 @@ export class ProjectsController {
     @Param('id') id: string,
     @Body() updateProjectDto: UpdateProjectDto,
   ) {
-    return this.projectsService.update(id, updateProjectDto);
+    return await this.projectsService.update(id, updateProjectDto);
   }
 
   @Delete(':id')
