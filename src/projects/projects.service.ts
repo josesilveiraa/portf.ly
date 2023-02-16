@@ -27,20 +27,24 @@ export class ProjectsService {
       throw new BadRequestException('`id` must be 24-character long.');
     }
 
-    const user = await this.prismaService.project.findUnique({ where: { id } });
+    const project = await this.prismaService.project.findUnique({
+      where: { id },
+    });
 
-    if (!user) throw new NotFoundException('User not found.');
+    if (!project) throw new NotFoundException('User not found.');
 
-    return user;
+    return project;
   }
 
   async update(
     id: string,
     updateProjectDto: UpdateProjectDto,
   ): Promise<Project> {
+    const project = await this.findOne(id);
+
     return await this.prismaService.project.update({
       where: {
-        id,
+        id: project.id,
       },
 
       data: updateProjectDto,
@@ -48,10 +52,10 @@ export class ProjectsService {
   }
 
   async remove(id: string): Promise<Project> {
-    return await this.prismaService.project.delete({
-      where: {
-        id,
-      },
+    const project = await this.findOne(id);
+
+    return this.prismaService.project.delete({
+      where: { id: project.id },
     });
   }
 }
