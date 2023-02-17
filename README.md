@@ -12,9 +12,6 @@ $ cd portfolio-api
 # Install dependencies
 $ yarn install
 
-# Sync database after changing DATABASE_URL on .env
-$ yarn prisma db push
-
 # Run development environment
 $ yarn:start:dev
 ```
