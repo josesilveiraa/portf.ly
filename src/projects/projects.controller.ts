@@ -30,7 +30,7 @@ export class ProjectsController {
   @ApiOperation({ summary: 'Create a project' })
   @ApiCreatedResponse({
     type: ProjectEntity,
-    description: 'The created project',
+    description: 'The created project.',
   })
   async create(@Body() createProjectDto: CreateProjectDto) {
     return await this.projectsService.create(createProjectDto);
@@ -61,6 +61,7 @@ export class ProjectsController {
   @Patch(':id')
   @ApiOperation({ summary: 'Update a project' })
   @ApiOkResponse({ type: ProjectEntity, description: 'The updated project.' })
+  @ApiNotFoundResponse({ description: 'Project not found.' })
   async update(
     @Param('id') id: string,
     @Body() updateProjectDto: UpdateProjectDto,
@@ -71,6 +72,7 @@ export class ProjectsController {
   @Delete(':id')
   @ApiOperation({ summary: 'Remove a project' })
   @ApiNoContentResponse({ description: 'Project removed successfully.' })
+  @ApiNotFoundResponse({ description: 'Project not found.' })
   async remove(@Param('id') id: string) {
     return await this.projectsService.remove(id);
   }
