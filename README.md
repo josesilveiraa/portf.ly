@@ -27,7 +27,7 @@ $ yarn:start:dev
 - Jest
 
 ## ✅ TODO
-- [ ] Unit testing
+- [X] Unit testing
 - [ ] E2E testing
 - [ ] Authentication and authorization
 - [ ] (Maybe) React frontend
