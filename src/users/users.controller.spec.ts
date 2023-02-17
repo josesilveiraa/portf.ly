@@ -4,6 +4,7 @@ import { UsersService } from './users.service';
 import { AdminUser } from '@prisma/client';
 import { CreateUserDto } from './dto/create-user.dto';
 import { BadRequestException } from '@nestjs/common';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 const validId = 'AAAAAAAAAAAAAAAAAAAAAAAA';
 
@@ -34,7 +35,7 @@ const serviceMock = {
       id,
     });
   }),
-  update: jest.fn().mockImplementation((id: string, user: CreateUserDto) => {
+  update: jest.fn().mockImplementation((id: string, user: UpdateUserDto) => {
     return Promise.resolve({ id, ...user });
   }),
   remove: jest.fn().mockResolvedValue(undefined),
@@ -100,7 +101,7 @@ describe('UsersController', () => {
   });
 
   describe('update', () => {
-    it('should successfully update a cat', async () => {
+    it('should successfully update an user', async () => {
       const user: CreateUserDto = {
         email: 'johndoe123@gmail.com',
         password: 'johndoe1234',
