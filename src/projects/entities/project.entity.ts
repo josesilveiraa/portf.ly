@@ -1,21 +1,19 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsUrl, Length } from 'class-validator';
+import { Project } from '@prisma/client';
 
-export class CreateProjectDto {
+export class ProjectEntity implements Project {
   @ApiProperty()
-  @IsNotEmpty()
-  @Length(5, 100)
+  id: string;
+
+  @ApiProperty()
   title: string;
 
   @ApiProperty()
-  @IsUrl()
-  @IsNotEmpty()
   repository: string;
 
   @ApiProperty()
   description: string;
 
   @ApiProperty()
-  @IsNotEmpty()
   readme: string;
 }
