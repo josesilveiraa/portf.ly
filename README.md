@@ -30,4 +30,5 @@ $ yarn:start:dev
 - [X] Unit testing
 - [ ] E2E testing
 - [ ] Authentication and authorization
+- [ ] Swagger implementation
 - [ ] (Maybe) React frontend
