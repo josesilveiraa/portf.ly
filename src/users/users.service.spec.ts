@@ -92,9 +92,10 @@ describe('UsersService', () => {
       it('should fail a delete operation', () => {
         const spy = jest
           .spyOn(prisma.adminUser, 'delete')
-          .mockRejectedValueOnce(new Error('Bad Delete Method.'));
+          .mockRejectedValueOnce(new BadRequestException('Invalid ID.'));
 
-        expect(service.remove('bad uuid')).rejects.toBeInstanceOf(
+        expect(service.remove('invalid uuid')).rejects.toThrow();
+        expect(service.remove('invalid uuid')).rejects.toBeInstanceOf(
           BadRequestException,
         );
       });
