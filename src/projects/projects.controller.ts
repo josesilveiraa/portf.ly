@@ -6,6 +6,8 @@ import {
   Patch,
   Param,
   Delete,
+  HttpCode,
+  HttpStatus,
 } from '@nestjs/common';
 import { ProjectsService } from './projects.service';
 import { CreateProjectDto } from './dto/create-project.dto';
@@ -73,6 +75,7 @@ export class ProjectsController {
   @ApiOperation({ summary: 'Remove a project' })
   @ApiNoContentResponse({ description: 'Project removed successfully.' })
   @ApiNotFoundResponse({ description: 'Project not found.' })
+  @HttpCode(HttpStatus.NO_CONTENT)
   async remove(@Param('id') id: string) {
     return await this.projectsService.remove(id);
   }

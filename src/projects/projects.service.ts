@@ -53,7 +53,6 @@ export class ProjectsService {
     });
   }
 
-  @HttpCode(HttpStatus.NO_CONTENT)
   async remove(id: string) {
     const project = await this.findOne(id);
 

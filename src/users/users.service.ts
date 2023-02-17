@@ -69,7 +69,6 @@ export class UsersService {
     return excludedUser;
   }
 
-  @HttpCode(HttpStatus.NO_CONTENT)
   async remove(id: string) {
     const user = await this.findOne(id);
 
