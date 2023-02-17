@@ -5,7 +5,7 @@ import { ProjectsService } from './projects.service';
 import { randomUUID } from 'node:crypto';
 import { BadRequestException } from '@nestjs/common';
 
-const validId = 'AAAAAAAAAAAAAAAAAAAAAAAA';
+const validId = 'vkXIVbeSRTPfPkacUER0lHdd';
 
 const mockProjects: Project[] = [
   {

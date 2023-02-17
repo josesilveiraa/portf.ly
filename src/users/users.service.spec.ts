@@ -5,7 +5,7 @@ import { randomUUID } from 'node:crypto';
 import { PrismaService } from '../database/prisma.service';
 import { BadRequestException } from '@nestjs/common';
 
-const validId = 'AAAAAAAAAAAAAAAAAAAAAAAA';
+const validId = 'vkXIVbeSRTPfPkacUER0lHdd';
 
 const mockUsers: AdminUser[] = [
   {

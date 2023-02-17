@@ -6,7 +6,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { BadRequestException } from '@nestjs/common';
 import { UpdateUserDto } from './dto/update-user.dto';
 
-const validId = 'AAAAAAAAAAAAAAAAAAAAAAAA';
+const validId = 'vkXIVbeSRTPfPkacUER0lHdd';
 
 const mockUsers: AdminUser[] = [
   {

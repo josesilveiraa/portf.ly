@@ -7,7 +7,7 @@ import { UpdateProjectDto } from './dto/update-project.dto';
 import { ProjectsController } from './projects.controller';
 import { ProjectsService } from './projects.service';
 
-const validId = 'AAAAAAAAAAAAAAAAAAAAAAAA';
+const validId = 'vkXIVbeSRTPfPkacUER0lHdd';
 
 const mockProjects: Project[] = [
   {
