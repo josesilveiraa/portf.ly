@@ -1,5 +1,7 @@
 import {
   BadRequestException,
+  HttpCode,
+  HttpStatus,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
@@ -51,11 +53,14 @@ export class ProjectsService {
     });
   }
 
-  async remove(id: string): Promise<Project> {
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async remove(id: string) {
     const project = await this.findOne(id);
 
-    return this.prismaService.project.delete({
+    await this.prismaService.project.delete({
       where: { id: project.id },
     });
+
+    return;
   }
 }

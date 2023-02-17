@@ -1,5 +1,7 @@
 import {
   BadRequestException,
+  HttpCode,
+  HttpStatus,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
@@ -67,16 +69,15 @@ export class UsersService {
     return excludedUser;
   }
 
-  async remove(id: string): Promise<ExcludedUser> {
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async remove(id: string) {
     const user = await this.findOne(id);
 
-    const removedUser = await this.prismaService.adminUser.delete({
+    await this.prismaService.adminUser.delete({
       where: { id: user.id },
     });
 
-    const excludedUser = this.exclude(removedUser, ['password']);
-
-    return excludedUser;
+    return;
   }
 
   private exclude<AdminUser, Key extends keyof AdminUser>(
