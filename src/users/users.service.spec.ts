@@ -5,7 +5,7 @@ import { randomUUID } from 'node:crypto';
 import { PrismaService } from '../database/prisma.service';
 import { BadRequestException } from '@nestjs/common';
 
-const uuid = 'AAAAAAAAAAAAAAAAAAAAAAAA';
+const validId = 'AAAAAAAAAAAAAAAAAAAAAAAA';
 
 const mockUsers: AdminUser[] = [
   {
@@ -60,7 +60,7 @@ describe('UsersService', () => {
 
     describe('findOne', () => {
       it('should get a single user', async () => {
-        expect(service.findOne(uuid)).resolves.toEqual(mockUsers[0]);
+        expect(service.findOne(validId)).resolves.toEqual(mockUsers[0]);
       });
     });
 
@@ -78,7 +78,7 @@ describe('UsersService', () => {
 
     describe('update', () => {
       it('should update an user', async () => {
-        const user = await service.update(uuid, {
+        const user = await service.update(validId, {
           email: 'johndoe@gmail.com',
           username: 'JohnDoe',
           password: 'johndoe123',
