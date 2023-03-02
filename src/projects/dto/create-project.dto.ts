@@ -12,7 +12,7 @@ export class CreateProjectDto {
   @IsNotEmpty()
   repository: string;
 
-  @ApiProperty()
+  @ApiProperty({ required: false })
   description: string;
 
   @ApiProperty()

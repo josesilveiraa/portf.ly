@@ -46,7 +46,7 @@ export class UsersController {
   @ApiOperation({ summary: 'Get one user' })
   @ApiOkResponse({ type: UserEntity, description: 'The found user.' })
   @ApiBadRequestResponse({
-    description: 'Invalid ID length (must be 24-char length).',
+    description: 'Invalid ID (must be 24-char length).',
   })
   @ApiNotFoundResponse({ description: 'User not found.' })
   async findOne(@Param('id') id: string) {
