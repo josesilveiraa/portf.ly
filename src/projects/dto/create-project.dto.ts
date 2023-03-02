@@ -7,7 +7,7 @@ export class CreateProjectDto {
   @Length(5, 100)
   title: string;
 
-  @ApiProperty({ example: 'https://example.com' })
+  @ApiProperty({ example: 'https://github.com/josesilveiraa/josesilveiraa' })
   @IsUrl()
   @IsNotEmpty()
   repository: string;
