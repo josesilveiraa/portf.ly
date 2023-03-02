@@ -1,7 +1,5 @@
 import {
   BadRequestException,
-  HttpCode,
-  HttpStatus,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
@@ -17,7 +15,7 @@ export interface ExcludedUser {
 
 @Injectable()
 export class UsersService {
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(private readonly prismaService: PrismaService) { }
 
   async create(createUserDto: CreateUserDto): Promise<ExcludedUser> {
     const createdUser = await this.prismaService.adminUser.create({

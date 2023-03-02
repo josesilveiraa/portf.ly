@@ -11,7 +11,7 @@ export class ProjectEntity implements Project {
   @ApiProperty()
   repository: string;
 
-  @ApiProperty()
+  @ApiProperty({ required: false })
   description: string;
 
   @ApiProperty()
