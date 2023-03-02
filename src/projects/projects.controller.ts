@@ -53,7 +53,7 @@ export class ProjectsController {
   @ApiOperation({ summary: 'Get one project' })
   @ApiOkResponse({ type: ProjectEntity, description: 'The found project.' })
   @ApiBadRequestResponse({
-    description: 'Invalid ID length (must be 24-char length).',
+    description: 'Invalid ID (must be 24-char length).',
   })
   @ApiNotFoundResponse({ description: 'Project not found.' })
   async findOne(@Param('id') id: string) {
