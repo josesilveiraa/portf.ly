@@ -1,8 +1,8 @@
 {
   "name": "portfolio-api",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "An advanced portfolio API back-end (WIP)",
+  "author": "Josesilveiraa",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
