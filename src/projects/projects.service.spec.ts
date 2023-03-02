@@ -98,7 +98,7 @@ describe('ProjectsService', () => {
 
   describe('remove', () => {
     it('should fail when trying to remove a project', async () => {
-      const spy = jest
+      jest
         .spyOn(prisma.project, 'delete')
         .mockRejectedValueOnce(new BadRequestException('Invalid ID.'));
 
