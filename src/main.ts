@@ -20,6 +20,8 @@ async function bootstrap() {
 
   await app.register(helmet);
 
+  app.enableCors();
+
   const config = new DocumentBuilder()
     .setTitle('Portfolio API')
     .setDescription('Portfolio API description')
