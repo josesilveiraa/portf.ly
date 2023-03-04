@@ -13,7 +13,7 @@ $ cd portfolio-api
 $ yarn install
 
 # Run development environment
-$ yarn:start:dev
+$ yarn start:dev
 ```
 
 ## 🚀 Used technologies
