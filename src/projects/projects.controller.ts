@@ -22,6 +22,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { ProjectEntity } from './entities/project.entity';
+import { Public } from 'src/auth/is-public.decorator';
 
 @ApiTags('projects')
 @Controller('api/projects')
@@ -38,6 +39,7 @@ export class ProjectsController {
     return await this.projectsService.create(createProjectDto);
   }
 
+  @Public()
   @Get()
   @ApiOperation({ summary: 'Get all projects' })
   @ApiOkResponse({
@@ -49,6 +51,7 @@ export class ProjectsController {
     return await this.projectsService.findAll();
   }
 
+  @Public()
   @Get(':id')
   @ApiOperation({ summary: 'Get one project' })
   @ApiOkResponse({ type: ProjectEntity, description: 'The found project.' })
