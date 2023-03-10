@@ -3,6 +3,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { AdminUser } from '@prisma/client';
 import { PrismaService } from '../database/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -15,7 +16,7 @@ export interface ExcludedUser {
 
 @Injectable()
 export class UsersService {
-  constructor(private readonly prismaService: PrismaService) { }
+  constructor(private readonly prismaService: PrismaService) {}
 
   async create(createUserDto: CreateUserDto): Promise<ExcludedUser> {
     const createdUser = await this.prismaService.adminUser.create({
@@ -49,6 +50,18 @@ export class UsersService {
     const excluded = this.exclude(user, ['password']);
 
     return excluded;
+  }
+
+  async findOneByEmail(email: string): Promise<AdminUser> {
+    const user = await this.prismaService.adminUser.findFirst({
+      where: { email },
+    });
+
+    if (!user) {
+      throw new NotFoundException('User not found.');
+    }
+
+    return user;
   }
 
   async update(
