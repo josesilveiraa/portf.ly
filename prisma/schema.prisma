@@ -13,7 +13,7 @@ datasource db {
 // The application won't have normal users, as it doesn't require any user action.
 model AdminUser {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
-  email    String
+  email    String @unique
   username String
   password String
 }
