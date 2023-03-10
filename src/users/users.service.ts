@@ -53,7 +53,7 @@ export class UsersService {
   }
 
   async findOneByEmail(email: string): Promise<AdminUser> {
-    const user = await this.prismaService.adminUser.findFirst({
+    const user = await this.prismaService.adminUser.findUnique({
       where: { email },
     });
 
