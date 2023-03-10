@@ -26,6 +26,6 @@ $ yarn start:dev
 ## ✅ TODO
 - [X] Unit testing
 - [ ] E2E testing
-- [ ] Authentication and authorization
+- [X] Authentication
 - [X] Swagger implementation
 - [ ] (Maybe) React frontend
