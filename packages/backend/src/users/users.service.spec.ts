@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AdminUser } from '@prisma/client';
+import { User } from '@prisma/client';
 import { UsersService } from './users.service';
 import { randomUUID } from 'node:crypto';
 import { PrismaService } from '../database/prisma.service';
@@ -7,7 +7,7 @@ import { BadRequestException } from '@nestjs/common';
 
 const validId = 'vkXIVbeSRTPfPkacUER0lHdd';
 
-const mockUsers: AdminUser[] = [
+const mockUsers: User[] = [
   {
     id: randomUUID(),
     email: 'johndoe@gmail.com',
@@ -23,7 +23,7 @@ const mockUsers: AdminUser[] = [
 ];
 
 const prismaMock = {
-  adminUser: {
+  user: {
     create: jest.fn().mockReturnValue(mockUsers[0]),
     findMany: jest.fn().mockReturnValue(mockUsers),
     findUnique: jest.fn().mockReturnValue(mockUsers[0]),
@@ -91,7 +91,7 @@ describe('UsersService', () => {
     describe('remove', () => {
       it('should fail a delete operation', () => {
         const spy = jest
-          .spyOn(prisma.adminUser, 'delete')
+          .spyOn(prisma.user, 'delete')
           .mockRejectedValueOnce(new BadRequestException('Invalid ID.'));
 
         expect(service.remove('invalid uuid')).rejects.toThrow();

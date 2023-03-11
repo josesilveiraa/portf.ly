@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
-import { AdminUser } from '@prisma/client';
+import { User } from '@prisma/client';
 
 @Injectable()
 export class AuthService {
@@ -23,7 +23,7 @@ export class AuthService {
     return result;
   }
 
-  async login(user: AdminUser) {
+  async login(user: User) {
     const payload = { email: user.email, sub: user.id };
 
     return {

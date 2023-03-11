@@ -1,14 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
-import { AdminUser } from '@prisma/client';
+import { User } from '@prisma/client';
 import { CreateUserDto } from './dto/create-user.dto';
 import { BadRequestException } from '@nestjs/common';
 import { UpdateUserDto } from './dto/update-user.dto';
 
 const validId = 'vkXIVbeSRTPfPkacUER0lHdd';
 
-const mockUsers: AdminUser[] = [
+const mockUsers: User[] = [
   {
     id: 'firstId',
     email: 'johndoe@gmail.com',

@@ -3,7 +3,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { AdminUser } from '@prisma/client';
+import { User } from '@prisma/client';
 import { PrismaService } from '../database/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -19,7 +19,7 @@ export class UsersService {
   constructor(private readonly prismaService: PrismaService) {}
 
   async create(createUserDto: CreateUserDto): Promise<ExcludedUser> {
-    const createdUser = await this.prismaService.adminUser.create({
+    const createdUser = await this.prismaService.user.create({
       data: createUserDto,
     });
     const excludedUser = this.exclude(createdUser, ['password']);
@@ -28,7 +28,7 @@ export class UsersService {
   }
 
   async findAll(): Promise<ExcludedUser[]> {
-    const users = await this.prismaService.adminUser.findMany({});
+    const users = await this.prismaService.user.findMany({});
     const excluded = users.map((user) => this.exclude(user, ['password']));
 
     return excluded;
@@ -39,7 +39,7 @@ export class UsersService {
       throw new BadRequestException('`id` must be 24-character long.');
     }
 
-    const user = await this.prismaService.adminUser.findUnique({
+    const user = await this.prismaService.user.findUnique({
       where: { id },
     });
 
@@ -52,8 +52,8 @@ export class UsersService {
     return excluded;
   }
 
-  async findOneByEmail(email: string): Promise<AdminUser> {
-    const user = await this.prismaService.adminUser.findUnique({
+  async findOneByEmail(email: string): Promise<User> {
+    const user = await this.prismaService.user.findUnique({
       where: { email },
     });
 
@@ -70,7 +70,7 @@ export class UsersService {
   ): Promise<ExcludedUser> {
     const user = await this.findOne(id);
 
-    const updatedUser = await this.prismaService.adminUser.update({
+    const updatedUser = await this.prismaService.user.update({
       where: { id: user.id },
       data: updateUserDto,
     });
@@ -83,17 +83,17 @@ export class UsersService {
   async remove(id: string) {
     const user = await this.findOne(id);
 
-    await this.prismaService.adminUser.delete({
+    await this.prismaService.user.delete({
       where: { id: user.id },
     });
 
     return;
   }
 
-  private exclude<AdminUser, Key extends keyof AdminUser>(
-    user: AdminUser,
+  private exclude<User, Key extends keyof User>(
+    user: User,
     keys: Key[],
-  ): Omit<AdminUser, Key> {
+  ): Omit<User, Key> {
     for (const key of keys) {
       delete user[key];
     }
