@@ -54,6 +54,12 @@ export async function getStaticPaths() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/projects`);
   const projects = await res.json();
 
+  if(res.status === 404) {
+    return {
+      notFound: true,
+    };
+  }
+
   const paths = projects.map((project: any) => ({
     params: { projectId: project.id }
   }));
