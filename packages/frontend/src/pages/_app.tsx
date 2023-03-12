@@ -7,10 +7,8 @@ export default function App({ Component, pageProps }: AppProps) {
   const isBrowser = useSSR();
 
   return (
-    isBrowser && (
-      <NextUIProvider theme={darkTheme}>
-        <Component {...pageProps} />
-      </NextUIProvider>
-    )
+    <NextUIProvider theme={darkTheme}>
+      <Component {...pageProps} />
+    </NextUIProvider>
   )
 }
