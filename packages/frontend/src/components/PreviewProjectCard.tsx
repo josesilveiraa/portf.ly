@@ -1,5 +1,5 @@
 import { Card, Col, Row, Button, Text } from "@nextui-org/react";
-import { useRouter } from "next/router";
+import Link from "next/link";
 
 interface ProjectData {
   projectId: string;
@@ -11,7 +11,7 @@ interface ProjectData {
   buttonContent: string;
 }
 
-export const ProjectCard = ({
+export const PreviewProjectCard = ({
   projectId,
   category,
   title,
@@ -20,7 +20,6 @@ export const ProjectCard = ({
   secondLine,
   buttonContent,
 }: ProjectData) => {
-  const router = useRouter();
   
   return (
     <Card css={{ w: "100%", h: "400px" }}>
@@ -68,10 +67,9 @@ export const ProjectCard = ({
                 flat
                 auto
                 rounded
+                as={Link}
                 color="secondary"
-                onClick={() => {
-                  router.push(`/project/${projectId}`);
-                }}
+                href={`/project/${projectId}`}
               >
                 <Text
                   css={{ color: "inherit" }}

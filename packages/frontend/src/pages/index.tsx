@@ -1,5 +1,5 @@
 import MainNavbar from '@/components/MainNavbar';
-import { ProjectCard } from '@/components/ProjectCard';
+import { PreviewProjectCard } from '@/components/PreviewProjectCard';
 import { Container, Grid } from '@nextui-org/react';
 
 interface Project {
@@ -20,11 +20,11 @@ export default function Home({ projects }: Props) {
       <MainNavbar />
 
       <Grid.Container gap={2} justify="center" css={{"marginTop": "100px"}}>
-        {projects.map((project) => {
+        {projects.map((project, index) => {
           return (
             <Grid xs={12} sm={3} key={project.id}>
-            <ProjectCard 
-              key={project.id}
+            <PreviewProjectCard 
+              key={index}
               projectId={project.id}
               category="Project"
               imageUrl='https://nextui.org/images/card-example-3.jpeg'
