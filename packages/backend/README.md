@@ -27,6 +27,6 @@ $ yarn start:dev
 - [X] Unit testing
 - [ ] E2E testing
 - [X] Authentication
-- [ ] Redis cache implementation
+- [X] Redis cache implementation
 - [X] Swagger implementation
 - [ ] (Maybe) React frontend
