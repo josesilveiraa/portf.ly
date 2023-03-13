@@ -15,6 +15,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import {
   ApiBadRequestResponse,
   ApiCreatedResponse,
+  ApiHeader,
   ApiNoContentResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
@@ -31,6 +32,11 @@ export class UsersController {
   @Post()
   @ApiOperation({ summary: 'Create an user' })
   @ApiCreatedResponse({ type: UserEntity, description: 'The created user.' })
+  @ApiHeader({
+    name: 'Authorization',
+    description: 'The authorization token.',
+    example: 'Bearer abc.123.xyz',
+  })
   async create(@Body() createUserDto: CreateUserDto) {
     return await this.usersService.create(createUserDto);
   }
@@ -38,6 +44,11 @@ export class UsersController {
   @Get()
   @ApiOperation({ summary: 'Get all users' })
   @ApiOkResponse({ type: UserEntity, isArray: true })
+  @ApiHeader({
+    name: 'Authorization',
+    description: 'The authorization token.',
+    example: 'Bearer abc.123.xyz',
+  })
   async findAll() {
     return await this.usersService.findAll();
   }
@@ -49,6 +60,11 @@ export class UsersController {
     description: 'Invalid ID (must be 24-char length).',
   })
   @ApiNotFoundResponse({ description: 'User not found.' })
+  @ApiHeader({
+    name: 'Authorization',
+    description: 'The authorization token.',
+    example: 'Bearer abc.123.xyz',
+  })
   async findOne(@Param('id') id: string) {
     return await this.usersService.findOne(id);
   }
@@ -57,6 +73,11 @@ export class UsersController {
   @ApiOperation({ summary: 'Update an user' })
   @ApiOkResponse({ type: UserEntity, description: 'The updated user.' })
   @ApiNotFoundResponse({ description: 'User not found.' })
+  @ApiHeader({
+    name: 'Authorization',
+    description: 'The authorization token.',
+    example: 'Bearer abc.123.xyz',
+  })
   async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return await this.usersService.update(id, updateUserDto);
   }
@@ -66,6 +87,11 @@ export class UsersController {
   @ApiNoContentResponse({ description: 'User removed successfully.' })
   @ApiNotFoundResponse({ description: 'User not found.' })
   @HttpCode(HttpStatus.NO_CONTENT)
+  @ApiHeader({
+    name: 'Authorization',
+    description: 'The authorization token.',
+    example: 'Bearer abc.123.xyz',
+  })
   async remove(@Param('id') id: string) {
     return await this.usersService.remove(id);
   }

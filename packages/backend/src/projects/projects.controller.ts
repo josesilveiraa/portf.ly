@@ -8,7 +8,6 @@ import {
   Delete,
   HttpCode,
   HttpStatus,
-  CacheKey,
 } from '@nestjs/common';
 import { ProjectsService } from './projects.service';
 import { CreateProjectDto } from './dto/create-project.dto';
@@ -21,6 +20,7 @@ import {
   ApiOkResponse,
   ApiOperation,
   ApiTags,
+  ApiHeader,
 } from '@nestjs/swagger';
 import { ProjectEntity } from './entities/project.entity';
 import { Public } from 'src/auth/is-public.decorator';
@@ -35,6 +35,11 @@ export class ProjectsController {
   @ApiCreatedResponse({
     type: ProjectEntity,
     description: 'The created project.',
+  })
+  @ApiHeader({
+    name: 'Authorization',
+    description: 'The authorization token.',
+    example: 'Bearer abc.123.xyz',
   })
   async create(@Body() createProjectDto: CreateProjectDto) {
     return await this.projectsService.create(createProjectDto);
@@ -68,6 +73,11 @@ export class ProjectsController {
   @ApiOperation({ summary: 'Update a project' })
   @ApiOkResponse({ type: ProjectEntity, description: 'The updated project.' })
   @ApiNotFoundResponse({ description: 'Project not found.' })
+  @ApiHeader({
+    name: 'Authorization',
+    description: 'The authorization token.',
+    example: 'Bearer abc.123.xyz',
+  })
   async update(
     @Param('id') id: string,
     @Body() updateProjectDto: UpdateProjectDto,
@@ -80,6 +90,11 @@ export class ProjectsController {
   @ApiNoContentResponse({ description: 'Project removed successfully.' })
   @ApiNotFoundResponse({ description: 'Project not found.' })
   @HttpCode(HttpStatus.NO_CONTENT)
+  @ApiHeader({
+    name: 'Authorization',
+    description: 'The authorization token.',
+    example: 'Bearer abc.123.xyz',
+  })
   async remove(@Param('id') id: string) {
     return await this.projectsService.remove(id);
   }
