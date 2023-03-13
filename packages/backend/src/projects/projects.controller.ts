@@ -41,7 +41,6 @@ export class ProjectsController {
   }
 
   @Public()
-  @CacheKey('all_projects')
   @Get()
   @ApiOperation({ summary: 'Get all projects' })
   @ApiOkResponse({
