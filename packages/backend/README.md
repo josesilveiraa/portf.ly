@@ -4,13 +4,16 @@
 
 ```bash
 # Clone the repository
-$ git clone https://github.com/josesilveiraa/portfolio-api/
+$ git clone https://github.com/josesilveiraa/portf.ly/
 
 # CD into it
-$ cd portfolio-api
+$ cd portf.ly/
 
 # Install dependencies
 $ yarn install
+
+# CD into backend pacakge
+$ cd packages/backend
 
 # Run development environment
 $ yarn start:dev
