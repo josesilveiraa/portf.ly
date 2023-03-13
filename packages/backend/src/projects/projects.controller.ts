@@ -8,6 +8,7 @@ import {
   Delete,
   HttpCode,
   HttpStatus,
+  CacheKey,
 } from '@nestjs/common';
 import { ProjectsService } from './projects.service';
 import { CreateProjectDto } from './dto/create-project.dto';
@@ -40,6 +41,7 @@ export class ProjectsController {
   }
 
   @Public()
+  @CacheKey('all_projects')
   @Get()
   @ApiOperation({ summary: 'Get all projects' })
   @ApiOkResponse({

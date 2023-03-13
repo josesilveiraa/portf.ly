@@ -1,9 +1,12 @@
 import {
   BadRequestException,
+  CACHE_MANAGER,
+  Inject,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
 import { Project } from '@prisma/client';
+import { Cache } from 'cache-manager';
 import { PrismaService } from '../database/prisma.service';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
