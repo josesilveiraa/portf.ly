@@ -12,7 +12,7 @@ $ cd portf.ly/
 # Install dependencies
 $ yarn install
 
-# CD into backend pacakge
+# CD into backend package
 $ cd packages/backend
 
 # Run development environment
