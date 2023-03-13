@@ -2,6 +2,8 @@
 
 ## 📦 Installation
 
+`NOTE:` The default e-mail and password is `admin@admin.com|admin@123`
+
 ```bash
 # Clone the repository
 $ git clone https://github.com/josesilveiraa/portf.ly/
@@ -14,6 +16,9 @@ $ yarn install
 
 # CD into backend package
 $ cd packages/backend
+
+# Seed the database after putting the given values inside .env file
+$ yarn tsc src/database/seed.ts
 
 # Run development environment
 $ yarn start:dev
