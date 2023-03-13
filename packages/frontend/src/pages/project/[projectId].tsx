@@ -1,5 +1,5 @@
-import MainNavbar from "@/components/MainNavbar";
-import ProjectTextArea from "@/components/ProjectTextArea";
+import MainNavbar from "@/components/home/MainNavbar";
+import ProjectTextArea from "@/components/home/ProjectTextArea";
 import { Button, Col, Container, Grid, Spacer, Text } from "@nextui-org/react";
 import Head from "next/head";
 import Link from "next/link";

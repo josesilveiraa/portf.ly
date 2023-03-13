@@ -1,5 +1,5 @@
-import MainNavbar from '@/components/MainNavbar';
-import { PreviewProjectCard } from '@/components/cards/PreviewProjectCard';
+import MainNavbar from '@/components/home/MainNavbar';
+import { PreviewProjectCard } from '@/components/home/cards/PreviewProjectCard';
 import { Container, Grid } from '@nextui-org/react';
 
 interface Project {
