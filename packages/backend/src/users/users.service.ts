@@ -72,13 +72,13 @@ export class UsersService {
   }
 
   async update(
-    id: string,
+    providedId: string,
     updateUserDto: UpdateUserDto,
   ): Promise<ExcludedUser> {
-    const user = await this.findOne(id);
+    const { id } = await this.findOne(providedId);
 
     const updatedUser = await this.prismaService.user.update({
-      where: { id: user.id },
+      where: { id },
       data: updateUserDto,
     });
 
@@ -87,11 +87,11 @@ export class UsersService {
     return excludedUser;
   }
 
-  async remove(id: string) {
-    const user = await this.findOne(id);
+  async remove(providedId: string) {
+    const { id } = await this.findOne(providedId);
 
     await this.prismaService.user.delete({
-      where: { id: user.id },
+      where: { id },
     });
 
     return;
