@@ -17,8 +17,11 @@ $ yarn install
 # CD into backend package
 $ cd packages/backend
 
+# Get your containers running
+$ docker-compose up -d
+
 # Seed the database after putting the given values inside .env file
-$ yarn tsc src/database/seed.ts
+$ yarn prisma db seed
 
 # Run development environment
 $ yarn start:dev
