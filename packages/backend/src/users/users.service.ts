@@ -59,7 +59,7 @@ export class UsersService {
     return excluded;
   }
 
-  async findOneByEmail(email: string): Promise<ExcludedUser> {
+  async findOneByEmail(email: string): Promise<User> {
     const user = await this.prismaService.user.findUnique({
       where: { email },
     });
@@ -68,9 +68,7 @@ export class UsersService {
       throw new NotFoundException('User not found.');
     }
 
-    const excluded = this.exclude(user, ['password']);
-
-    return excluded;
+    return user;
   }
 
   async update(
