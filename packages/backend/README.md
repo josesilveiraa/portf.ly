@@ -28,6 +28,7 @@ $ yarn start:dev
 ```
 
 ## 🚀 Used technologies
+
 - Nest.js
 - Node.js
 - Prisma
@@ -35,10 +36,11 @@ $ yarn start:dev
 - Jest
 
 ## ✅ TODO (in order of priority)
+
 - [ ] Implement replica set on `docker-compose.yml`. Use Atlas for now.
-- [X] Unit testing
+- [x] Unit testing
 - [ ] E2E testing
-- [X] Authentication
-- [X] Redis cache implementation
-- [X] Swagger implementation
+- [x] Authentication
+- [x] Redis cache implementation
+- [x] Swagger implementation
 - [ ] (Maybe) React frontend
