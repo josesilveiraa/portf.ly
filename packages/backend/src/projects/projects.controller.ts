@@ -26,7 +26,7 @@ import { ProjectEntity } from './entities/project.entity';
 import { Public } from 'src/auth/is-public.decorator';
 
 @ApiTags('projects')
-@Controller('api/projects')
+@Controller('projects')
 export class ProjectsController {
   constructor(private readonly projectsService: ProjectsService) {}
 
