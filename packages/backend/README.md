@@ -34,7 +34,8 @@ $ yarn start:dev
 - MongoDB
 - Jest
 
-## ✅ TODO
+## ✅ TODO (in order of priority)
+- [ ] Implement replica set on `docker-compose.yml`. Use Atlas for now.
 - [X] Unit testing
 - [ ] E2E testing
 - [X] Authentication
