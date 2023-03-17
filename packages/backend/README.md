@@ -2,7 +2,7 @@
 
 ## 📦 Installation
 
-`NOTE:` The default e-mail and password is `admin@admin.com|admin@123`
+**NOTE:** The default e-mail and password is `admin@admin.com|admin@123`
 
 ```bash
 # Clone the repository
