@@ -37,10 +37,10 @@ $ yarn start:dev
 
 ## ✅ TODO (in order of priority)
 
-- [ ] Implement replica set on `docker-compose.yml`. Use Atlas for now.
 - [x] Unit testing
 - [ ] E2E testing
 - [x] Authentication
 - [x] Redis cache implementation
 - [x] Swagger implementation
 - [ ] (Maybe) React frontend
+- [ ] Implement replica set on `docker-compose.yml`. Use Atlas for now.
