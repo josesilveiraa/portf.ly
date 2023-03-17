@@ -8,6 +8,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import helmet from '@fastify/helmet';
 import { ConfigService } from '@nestjs/config';
+import compression from '@fastify/compress';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -19,6 +20,7 @@ async function bootstrap() {
   const port = configService.get<number>('PORT') || 3000;
 
   await app.register(helmet);
+  await app.register(compression);
 
   app.enableCors();
   app.enableVersioning({ type: VersioningType.URI, defaultVersion: '1' });
