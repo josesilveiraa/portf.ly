@@ -42,5 +42,5 @@ $ yarn start:dev
 - [x] Authentication
 - [x] Redis cache implementation
 - [x] Swagger implementation
-- [ ] (Maybe) React frontend
+- [ ] Next.js frontend
 - [ ] Implement replica set on `docker-compose.yml`. Use Atlas for now.
