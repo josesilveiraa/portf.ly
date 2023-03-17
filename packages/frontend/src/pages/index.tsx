@@ -42,7 +42,7 @@ export default function Home({ projects }: Props) {
 }
 
 export const getStaticProps = async () => {
-  const res = await fetch(`${process.env['NEXT_PUBLIC_API_ENDPOINT']}/projects`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/projects`);
   const projects: Project[] = await res.json();
 
   return {
