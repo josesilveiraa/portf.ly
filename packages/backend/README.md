@@ -1,8 +1,8 @@
-# :rocket: @portf.ly/backend
+# Portfolio API
 
 ## 📦 Installation
 
-**NOTE:** You'll need to have an instance of [@portf.ly/backend](https://github.com/josesilveiraa/portf.ly/tree/main/packages/frontend) running on your server.
+`NOTE:` The default e-mail and password is `admin@admin.com|admin@123`
 
 ```bash
 # Clone the repository
@@ -15,19 +15,32 @@ $ cd portf.ly/
 $ yarn install
 
 # CD into backend package
-$ cd packages/frontend
+$ cd packages/backend
+
+# Get your containers running
+$ docker-compose up -d
+
+# Seed the database after putting the given values inside .env file
+$ yarn prisma db seed
 
 # Run development environment
-$ yarn dev
+$ yarn start:dev
 ```
 
 ## 🚀 Used technologies
 
-- SSR
-- Next.js
-- NextUI
+- Nest.js
+- Node.js
+- Prisma
+- MongoDB
+- Jest
 
 ## ✅ TODO (in order of priority)
 
-- [ ] Finish [projectId] page
-- [ ] Implement a basic administration dashboard
+- [x] Unit testing
+- [ ] E2E testing
+- [x] Authentication
+- [x] Redis cache implementation
+- [x] Swagger implementation
+- [ ] Next.js frontend
+- [ ] Implement replica set on `docker-compose.yml`. Use Atlas for now.
