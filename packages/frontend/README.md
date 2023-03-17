@@ -1,4 +1,4 @@
-# :rocket: @portf.ly/backend
+# :rocket: @portf.ly/frontend
 
 ## 📦 Installation
 
