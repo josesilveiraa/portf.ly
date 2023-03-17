@@ -1,4 +1,4 @@
-# :rocket: @portfly/backend
+# :rocket: @portf.ly/backend
 
 ## 📦 Installation
 
