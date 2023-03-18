@@ -13,7 +13,7 @@ export default function MainNavbar() {
         </Navbar.Content>
         <Navbar.Content>
           <Navbar.Item>
-            <Button auto flat as={Link} href="#">Log-in</Button>
+            <Button auto flat as={Link} href="/admin/login">Log-in</Button>
           </Navbar.Item>
         </Navbar.Content>
       </Navbar>
