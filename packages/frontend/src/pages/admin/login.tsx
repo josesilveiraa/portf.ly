@@ -13,7 +13,7 @@ export default function Login() {
         placeholder="Email"
       />
       <Spacer y={1} />
-      <Input
+      <Input.Password
         clearable
         bordered
         fullWidth
