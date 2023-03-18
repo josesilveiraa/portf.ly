@@ -18,4 +18,9 @@ export class CreateProjectDto {
   @ApiProperty()
   @IsNotEmpty()
   readme: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsUrl()
+  previewImage: string;
 }

@@ -7,7 +7,7 @@ export class UpdateProjectDto extends PartialType(CreateProjectDto) {
   @ApiProperty({ required: false })
   @IsNotEmpty()
   @Length(5, 100)
-  title: string;
+  title?: string;
 
   @ApiProperty({
     example: 'https://github.com/josesilveiraa/josesilveiraa',
@@ -15,12 +15,15 @@ export class UpdateProjectDto extends PartialType(CreateProjectDto) {
   })
   @IsUrl()
   @IsNotEmpty()
-  repository: string;
+  repository?: string;
 
   @ApiProperty({ required: false })
-  description: string;
+  description?: string;
 
   @ApiProperty({ required: false })
   @IsNotEmpty()
-  readme: string;
+  readme?: string;
+
+  @ApiProperty({ required: false })
+  previewImage?: string;
 }

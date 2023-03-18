@@ -19,9 +19,10 @@ model User {
 }
 
 model Project {
-  id          String  @id @default(auto()) @map("_id") @db.ObjectId
-  title       String
-  repository  String
-  description String?
-  readme      String
+  id           String  @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  repository   String
+  description  String?
+  readme       String
+  previewImage String
 }
