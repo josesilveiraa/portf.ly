@@ -1,6 +1,11 @@
 import { Container, Text, Input, Spacer, Card, Row, Checkbox, Button } from "@nextui-org/react";
+import { ReactFragment } from "react";
 
-export default function LoginForm() {
+interface LoginFormProps {
+  children: ReactFragment;
+}
+
+export default function LoginForm({ children }: LoginFormProps) {
   return (
     <Container display="flex" alignItems="center" justify="center" css={{ minHeight: '100vh' }}>
       <Card css={{ mw: '420px', p: '20px' }}>
@@ -12,27 +17,9 @@ export default function LoginForm() {
               mb: '20px',
             }}
           >
-            Portf.ly Dashboard
+            Portf.ly - Login
           </Text>
-          <Input
-            clearable
-            bordered
-            fullWidth
-            color="primary"
-            size="lg"
-            placeholder="Email"
-          />
-          <Spacer y={1} />
-          <Input
-            clearable
-            bordered
-            fullWidth
-            color="primary"
-            size="lg"
-            placeholder="Password"
-            type="password"
-          />
-          <Spacer y={1} />
+            {children}
           <Row justify="space-between">
             <Checkbox>
               <Text size={14}>Remember me</Text>
