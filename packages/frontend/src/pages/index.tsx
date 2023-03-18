@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <Container>
       <MainNavbar />
-      <Grid.Container gap={2} justify="center" css={{"marginTop": "100px"}}>
+      <Grid.Container gap={2} justify="center">
         <ProjectList />
       </Grid.Container>
     </Container>
