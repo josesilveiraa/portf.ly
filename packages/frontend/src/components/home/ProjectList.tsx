@@ -8,6 +8,7 @@ interface Project {
   repository: string;
   description?: string;
   readme: string;
+  previewImage: string;
 };
 
 export default function ProjectList() {
@@ -23,7 +24,7 @@ export default function ProjectList() {
             key={index}
             projectId={project.id}
             category="Project"
-            imageUrl="https://nextui.org/images/card-example-3.jpeg"
+            imageUrl={project.previewImage}
             title={project.title}
             description={project.description}
             buttonContent="View"
