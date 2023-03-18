@@ -16,6 +16,7 @@ interface Project {
 
 export default function Project() {
   const router = useRouter();
+
   const { projectId } = router.query;
   const { data } = useFetch<Project>(`projects/${projectId}`);
 
