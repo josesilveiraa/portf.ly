@@ -5,6 +5,7 @@ import { Button, Col, Container, Grid, Spacer, Spinner, Text } from "@nextui-org
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import DefaultErrorPage from "next/error";
 
 interface Project {
   id: string;
@@ -18,7 +19,11 @@ export default function Project() {
   const router = useRouter();
 
   const { projectId } = router.query;
-  const { data } = useFetch<Project>(`projects/${projectId}`);
+  const { data, error } = useFetch<Project>(`projects/${projectId}`);
+
+  if(error) {
+    return <DefaultErrorPage statusCode={404}/>
+  }
 
   if(!data) return <Spinner />;
 
