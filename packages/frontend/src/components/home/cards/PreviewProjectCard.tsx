@@ -1,25 +1,23 @@
 import { Card, Col, Row, Button, Text } from "@nextui-org/react";
 import Link from "next/link";
 
-interface ProjectData {
+interface CardData {
   projectId: string;
   category: string;
   title: string;
   imageUrl: string;
-  firstLine: string;
-  secondLine?: string;
+  description?: string;
   buttonContent: string;
 }
 
-export const PreviewProjectCard = ({
+export default function PreviewProjectCard({
   projectId,
-  category,
   title,
+  description,
+  category,
   imageUrl,
-  firstLine,
-  secondLine,
   buttonContent,
-}: ProjectData) => {
+}: CardData) {
   
   return (
     <Card css={{ w: "100%", h: "400px" }}>
@@ -55,10 +53,7 @@ export const PreviewProjectCard = ({
         <Row>
           <Col>
             <Text color="#000" size={12}>
-              {firstLine}
-            </Text>
-            <Text color="#000" size={12}>
-              {secondLine}
+              {description}
             </Text>
           </Col>
           <Col>
