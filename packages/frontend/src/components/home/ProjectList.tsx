@@ -1,6 +1,6 @@
 import { useFetch } from "@/api/api"
 import { Grid, Spinner } from "@nextui-org/react";
-import { PreviewProjectCard } from "./cards/PreviewProjectCard"
+import PreviewProjectCard from "./cards/PreviewProjectCard"
 
 interface Project {
   id: string;
@@ -25,8 +25,7 @@ export default function ProjectList() {
             category="Project"
             imageUrl="https://nextui.org/images/card-example-3.jpeg"
             title={project.title}
-            firstLine="First Line"
-            secondLine={project.description}
+            description={project.description}
             buttonContent="View"
           />
         </Grid>
