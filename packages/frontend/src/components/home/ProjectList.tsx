@@ -1,5 +1,4 @@
 import { useFetch } from "@/api/api"
-import { Grid, Spinner } from "@nextui-org/react";
 import PreviewProjectCard from "./cards/PreviewProjectCard"
 
 interface Project {
@@ -14,12 +13,9 @@ interface Project {
 export default function ProjectList() {
   const { data } = useFetch('projects');
 
-  if (!data) return <Spinner />;
-
   return (
-    <>
+    <div className="mt-40 grid gap-4 grid-cols-1 md:grid-cols-2">
       {data.map((project: Project, index: number) => (
-        <Grid xs={12} sm={3} key={project.id}>
           <PreviewProjectCard
             key={index}
             projectId={project.id}
@@ -29,8 +25,7 @@ export default function ProjectList() {
             description={project.description}
             buttonContent="View"
           />
-        </Grid>
       ))}
-    </>
+    </div>
   );
 }

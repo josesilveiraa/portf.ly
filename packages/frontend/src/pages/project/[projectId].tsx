@@ -1,9 +1,5 @@
 import { useFetch } from "@/api/api";
 import MainNavbar from "@/components/home/MainNavbar";
-import ProjectTextArea from "@/components/home/ProjectTextArea";
-import { Button, Col, Container, Grid, Spacer, Spinner, Text } from "@nextui-org/react";
-import Head from "next/head";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import DefaultErrorPage from "next/error";
 
@@ -25,34 +21,27 @@ export default function Project() {
     return <DefaultErrorPage statusCode={404}/>
   }
 
-  if(!data) return <Spinner />;
-
   return (
-    <>
-      <Head>
-      <title>{data.title}</title>
-      </Head>
-      <Container>
+    <div className="flex flex-row h-screen items-center">
       <MainNavbar />
-      <Grid.Container justify="center" css={{ height: "500px" }}>
-        <Grid xs={12} sm={3} alignItems="center">
-          <Col css={{ width: "100%" }}>
-            <Text weight="bold" size={70} css={{ textAlign: "center" }}>{data.title}</Text>
-            <Text size={22} css={{ textAlign: "center", opacity: "80%" }}>{data.description}</Text>
-            <Spacer y={3} />
-            <Button size="md" shadow color="gradient" css={{ width: "55%", margin: "0 auto" }} as={Link} href={data.repository}>Go to Repository</Button>
-          </Col>
-        </Grid>
-        <Grid xs={12} sm={9} css={{ margin: "0 auto" }}>
-          <Col css={{ width: "100%" }}>
-            <Spacer y={3} />
-            <Text weight="bold" size={40} css={{ textAlign: "center" }}>README.md</Text>
-            <Spacer y={2} />
-            <ProjectTextArea>{data.readme}</ProjectTextArea>
-          </Col>
-        </Grid>
-      </Grid.Container>
-    </Container>
-    </>
-  )
+      <div className="w-1/3 p-4 h-96">
+        <div className="bg-white shadow-lg p-4 rounded-lg flex-shrink-0">
+          <h2 className="text-lg font-bold mb-2">Card na esquerda</h2>
+          <p className="text-gray-600">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id
+            risus eget diam bibendum ultrices. Mauris ullamcorper consequat
+            ligula, a pretium ex luctus a.
+          </p>
+        </div>
+      </div>
+      <div className="w-2/3 p-4">
+        <div className="flex items-center">
+          <textarea
+            readOnly
+            className="w-full border rounded-lg p-4 h-20 resize-none"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+  );
 }

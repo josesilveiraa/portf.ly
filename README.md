@@ -18,4 +18,4 @@ You can get started by taking a look on [@portf.ly/backend](https://github.com/j
 **Frontend**
 - SSR
 - Next.js
-- NextUI
+- TailwindCSS

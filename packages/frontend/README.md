@@ -25,7 +25,7 @@ $ yarn dev
 
 - SSR
 - Next.js
-- NextUI
+- TailwindCSS
 
 ## ✅ TODO (in order of priority)
 

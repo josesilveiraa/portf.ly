@@ -1,4 +1,4 @@
-import { Card, Col, Row, Button, Text } from "@nextui-org/react";
+import Image from "next/image";
 import Link from "next/link";
 
 interface CardData {
@@ -14,71 +14,27 @@ export default function PreviewProjectCard({
   projectId,
   title,
   description,
-  category,
   imageUrl,
   buttonContent,
 }: CardData) {
   
   return (
-    <Card css={{ w: "100%", h: "400px" }}>
-      <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
-        <Col>
-          <Text size={12} weight="bold" transform="uppercase" color="#ffffffAA">
-            {category}
-          </Text>
-          <Text h3 color="white">
-            {title}
-          </Text>
-        </Col>
-      </Card.Header>
-      <Card.Body css={{ p: 0 }}>
-        <Card.Image
-          src={imageUrl}
-          width="100%"
-          height="100%"
-          objectFit="cover"
-          alt="Project Card"
-        />
-      </Card.Body>
-      <Card.Footer
-        isBlurred
-        css={{
-          position: "absolute",
-          bgBlur: "#ffffff66",
-          borderTop: "$borderWeights$light solid rgba(255, 255, 255, 0.2)",
-          bottom: 0,
-          zIndex: 1,
-        }}
-      >
-        <Row>
-          <Col>
-            <Text color="#000" size={12}>
-              {description}
-            </Text>
-          </Col>
-          <Col>
-            <Row justify="flex-end">
-              <Button
-                flat
-                auto
-                rounded
-                as={Link}
-                color="secondary"
-                href={`/project/${projectId}`}
-              >
-                <Text
-                  css={{ color: "inherit" }}
-                  size={12}
-                  weight="bold"
-                  transform="uppercase"
-                >
-                  {buttonContent}
-                </Text>
-              </Button>
-            </Row>
-          </Col>
-        </Row>
-      </Card.Footer>
-    </Card>
+    <>
+    <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
+    <a href="#">
+        <Image className="rounded-t-lg" src={imageUrl} alt="" />
+    </a>
+    <div className="p-5">
+        <a href="#">
+            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 text-black">{title}</h5>
+        </a>
+        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{description}</p>
+        <Link href={`/project/${projectId}`} className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            {buttonContent}
+            <svg aria-hidden="true" className="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+        </Link>
+    </div>
+</div>
+</>
   );
 };
