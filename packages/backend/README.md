@@ -35,6 +35,9 @@ $ yarn start:dev
 - MongoDB
 - Jest
 
+## :books: Notes
+Once the server is running, you can access `http://localhost:3000/docs` to view the entire API description.
+
 ## ✅ TODO (in order of priority)
 
 - [x] Unit testing
