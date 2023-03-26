@@ -1,21 +1,24 @@
 import { Injectable } from '@nestjs/common';
 import { Project } from '@prisma/client';
 import { PrismaService } from 'src/database/prisma.service';
+import { CreateProjectDto } from 'src/projects/dto/create-project.dto';
 import { ProjectsRepository } from './projects-repository';
+
+interface ProjectUpdateData {
+  title?: string;
+  repository?: string;
+  description?: string;
+  readme?: string;
+  previewImage?: string;
+}
 
 @Injectable()
 export class PrismaProjectsRepository implements ProjectsRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(
-    title: string,
-    repository: string,
-    description: string,
-    readme: string,
-    previewImage: string,
-  ): Promise<Project> {
+  async create(data: CreateProjectDto): Promise<Project> {
     return await this.prisma.project.create({
-      data: { title, repository, description, readme, previewImage },
+      data,
     });
   }
 
@@ -27,17 +30,10 @@ export class PrismaProjectsRepository implements ProjectsRepository {
     return await this.prisma.project.findUnique({ where: { id } });
   }
 
-  async update(
-    id: string,
-    title: string,
-    repository: string,
-    description: string,
-    readme: string,
-    previewImage: string,
-  ): Promise<Project> {
+  async update(id: string, updateData: ProjectUpdateData): Promise<Project> {
     return await this.prisma.project.update({
       where: { id },
-      data: { title, repository, description, readme, previewImage },
+      data: updateData,
     });
   }
 

@@ -42,16 +42,7 @@ export class ProjectsController {
     example: 'Bearer abc.123.xyz',
   })
   async create(@Body() createProjectDto: CreateProjectDto) {
-    const { title, repository, description, readme, previewImage } =
-      createProjectDto;
-
-    return await this.projectsRepository.create(
-      title,
-      repository,
-      description,
-      readme,
-      previewImage,
-    );
+    return await this.projectsRepository.create(createProjectDto);
   }
 
   @Public()
@@ -91,17 +82,7 @@ export class ProjectsController {
     @Param('id') id: string,
     @Body() updateProjectDto: UpdateProjectDto,
   ) {
-    const { title, repository, description, readme, previewImage } =
-      updateProjectDto;
-
-    return await this.projectsRepository.update(
-      id,
-      title,
-      repository,
-      description,
-      readme,
-      previewImage,
-    );
+    return await this.projectsRepository.update(id, updateProjectDto);
   }
 
   @Delete(':id')
