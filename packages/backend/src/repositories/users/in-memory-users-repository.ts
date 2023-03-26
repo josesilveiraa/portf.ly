@@ -27,7 +27,7 @@ export class InMemoryUsersRepository implements UsersRepository {
     return Promise.reject(new Error(`User ${id} not found`));
   }
 
-  update(
+  async update(
     id: string,
     email: string,
     username: string,
