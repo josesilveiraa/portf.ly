@@ -38,8 +38,7 @@ export class UsersController {
     example: 'Bearer abc.123.xyz',
   })
   async create(@Body() createUserDto: CreateUserDto) {
-    const { username, email, password } = createUserDto;
-    return await this.usersRepository.create(username, email, password);
+    return await this.usersRepository.create(createUserDto);
   }
 
   @Get()
@@ -80,8 +79,7 @@ export class UsersController {
     example: 'Bearer abc.123.xyz',
   })
   async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    const { username, email, password } = updateUserDto;
-    return await this.usersRepository.update(id, username, email, password);
+    return await this.usersRepository.update(id, updateUserDto);
   }
 
   @Delete(':id')
