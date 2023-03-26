@@ -9,7 +9,6 @@ import {
   HttpCode,
   HttpStatus,
 } from '@nestjs/common';
-import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import {
@@ -23,11 +22,12 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { UserEntity } from './entities/user.entity';
+import { UsersRepository } from 'src/repositories/user/users-repository';
 
 @ApiTags('users')
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private usersRepository: UsersRepository) {}
 
   @Post()
   @ApiOperation({ summary: 'Create an user' })
@@ -38,7 +38,8 @@ export class UsersController {
     example: 'Bearer abc.123.xyz',
   })
   async create(@Body() createUserDto: CreateUserDto) {
-    return await this.usersService.create(createUserDto);
+    const { username, email, password } = createUserDto;
+    return await this.usersRepository.create(username, email, password);
   }
 
   @Get()
@@ -50,7 +51,7 @@ export class UsersController {
     example: 'Bearer abc.123.xyz',
   })
   async findAll() {
-    return await this.usersService.findAll();
+    return await this.usersRepository.findAll();
   }
 
   @Get(':id')
@@ -66,7 +67,7 @@ export class UsersController {
     example: 'Bearer abc.123.xyz',
   })
   async findOne(@Param('id') id: string) {
-    return await this.usersService.findOne(id);
+    return await this.usersRepository.findOne(id);
   }
 
   @Patch(':id')
@@ -79,7 +80,8 @@ export class UsersController {
     example: 'Bearer abc.123.xyz',
   })
   async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return await this.usersService.update(id, updateUserDto);
+    const { username, email, password } = updateUserDto;
+    return await this.usersRepository.update(id, username, email, password);
   }
 
   @Delete(':id')
@@ -93,6 +95,6 @@ export class UsersController {
     example: 'Bearer abc.123.xyz',
   })
   async remove(@Param('id') id: string) {
-    return await this.usersService.remove(id);
+    return await this.usersRepository.remove(id);
   }
 }

@@ -24,11 +24,12 @@ import {
 } from '@nestjs/swagger';
 import { ProjectEntity } from './entities/project.entity';
 import { Public } from 'src/auth/is-public.decorator';
+import { ProjectsRepository } from 'src/repositories/project/projects-repository';
 
 @ApiTags('projects')
 @Controller('projects')
 export class ProjectsController {
-  constructor(private readonly projectsService: ProjectsService) {}
+  constructor(private projectsRepository: ProjectsRepository) {}
 
   @Post()
   @ApiOperation({ summary: 'Create a project' })
@@ -42,7 +43,16 @@ export class ProjectsController {
     example: 'Bearer abc.123.xyz',
   })
   async create(@Body() createProjectDto: CreateProjectDto) {
-    return await this.projectsService.create(createProjectDto);
+    const { title, repository, description, readme, previewImage } =
+      createProjectDto;
+
+    return await this.projectsRepository.create(
+      title,
+      repository,
+      description,
+      readme,
+      previewImage,
+    );
   }
 
   @Public()
@@ -54,7 +64,7 @@ export class ProjectsController {
     description: 'All project records.',
   })
   async findAll() {
-    return await this.projectsService.findAll();
+    return await this.projectsRepository.findAll();
   }
 
   @Public()
@@ -66,7 +76,7 @@ export class ProjectsController {
   })
   @ApiNotFoundResponse({ description: 'Project not found.' })
   async findOne(@Param('id') id: string) {
-    return await this.projectsService.findOne(id);
+    return await this.projectsRepository.findOne(id);
   }
 
   @Patch(':id')
@@ -82,7 +92,17 @@ export class ProjectsController {
     @Param('id') id: string,
     @Body() updateProjectDto: UpdateProjectDto,
   ) {
-    return await this.projectsService.update(id, updateProjectDto);
+    const { title, repository, description, readme, previewImage } =
+      updateProjectDto;
+
+    return await this.projectsRepository.update(
+      id,
+      title,
+      repository,
+      description,
+      readme,
+      previewImage,
+    );
   }
 
   @Delete(':id')
@@ -96,6 +116,6 @@ export class ProjectsController {
     example: 'Bearer abc.123.xyz',
   })
   async remove(@Param('id') id: string) {
-    return await this.projectsService.remove(id);
+    return await this.projectsRepository.remove(id);
   }
 }

@@ -4,12 +4,15 @@ import { ProjectsController } from './projects.controller';
 import { PrismaService } from '../database/prisma.service';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { ProjectsRepository } from 'src/repositories/project/projects-repository';
+import { PrismaProjectsRepository } from 'src/repositories/project/prisma-projects-repository';
 
 @Module({
   controllers: [ProjectsController],
   providers: [
     ProjectsService,
     PrismaService,
+    { provide: ProjectsRepository, useClass: PrismaProjectsRepository },
     { provide: APP_GUARD, useClass: JwtAuthGuard },
   ],
 })
