@@ -22,7 +22,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { UserEntity } from './entities/user.entity';
-import { UsersRepository } from 'src/repositories/user/users-repository';
+import { UsersRepository } from 'src/repositories/users/users-repository';
 
 @ApiTags('users')
 @Controller('users')
