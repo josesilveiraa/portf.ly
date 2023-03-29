@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
 import { PrismaService } from 'src/database/prisma.service';
 import { APP_GUARD } from '@nestjs/core';
@@ -10,7 +9,6 @@ import { PrismaUsersRepository } from 'src/repositories/users/prisma-users-repos
 @Module({
   controllers: [UsersController],
   providers: [
-    UsersService,
     PrismaService,
     {
       provide: UsersRepository,
@@ -18,6 +16,5 @@ import { PrismaUsersRepository } from 'src/repositories/users/prisma-users-repos
     },
     { provide: APP_GUARD, useClass: JwtAuthGuard },
   ],
-  exports: [UsersService],
 })
 export class UsersModule {}

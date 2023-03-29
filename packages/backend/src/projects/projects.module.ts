@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { ProjectsService } from './projects.service';
 import { ProjectsController } from './projects.controller';
 import { PrismaService } from '../database/prisma.service';
 import { APP_GUARD } from '@nestjs/core';
@@ -10,7 +9,6 @@ import { PrismaProjectsRepository } from 'src/repositories/projects/prisma-proje
 @Module({
   controllers: [ProjectsController],
   providers: [
-    ProjectsService,
     PrismaService,
     { provide: ProjectsRepository, useClass: PrismaProjectsRepository },
     { provide: APP_GUARD, useClass: JwtAuthGuard },
