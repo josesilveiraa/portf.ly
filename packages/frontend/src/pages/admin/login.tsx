@@ -1,7 +1,6 @@
 import { AuthContext } from '@/contexts/AuthContext';
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import Image from 'next/image';
 
 export default function Login() {
   const { register, handleSubmit } = useForm();
