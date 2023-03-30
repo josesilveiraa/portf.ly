@@ -36,14 +36,21 @@ export class PrismaProjectsRepository implements ProjectsRepository {
     return project;
   }
 
-  async update(id: string, updateData: ProjectUpdateData): Promise<Project> {
+  async update(
+    targetId: string,
+    updateData: ProjectUpdateData,
+  ): Promise<Project> {
+    const { id } = await this.findOne(targetId);
+
     return await this.prisma.project.update({
       where: { id },
       data: updateData,
     });
   }
 
-  async remove(id: string): Promise<Project> {
+  async remove(targetId: string): Promise<Project> {
+    const { id } = await this.findOne(targetId);
+
     return await this.prisma.project.delete({ where: { id } });
   }
 }
