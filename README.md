@@ -1,6 +1,6 @@
 # :rocket: portf.ly
 
-Portf.ly is a ongoing fullstack portfolio system. It has projects and multiple users that can be added according to the user's necessity.
+Portf.ly is a under-development fullstack portfolio system. It has projects and multiple users that can be added according to the user's necessity.
 
 ## :package: Getting started
 
