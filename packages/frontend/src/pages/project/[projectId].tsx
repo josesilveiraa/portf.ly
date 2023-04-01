@@ -24,9 +24,11 @@ export default function Project() {
   return (
     <>
       <MainNavbar />
-      <div className="mt-20 grid gap-4 grid-cols-4 justify-center">
-      <div className="row-span-3">01</div>
+      <div className="flex h-screen">
+      <div className="m-auto">
+        <h1 className="text-white">W.I.P.</h1>
       </div>
+    </div>
     </>
   );
 }
