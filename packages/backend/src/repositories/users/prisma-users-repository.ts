@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { User } from '@prisma/client';
 import { PrismaService } from 'src/database/prisma.service';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
@@ -25,6 +29,10 @@ export class PrismaUsersRepository implements UsersRepository {
   }
 
   async findOne(id: string): Promise<User> {
+    if (!/^[0-9a-fA-F]{24}$/.test(id)) {
+      throw new BadRequestException('Invalid ID parameter');
+    }
+
     const user = await this.prisma.user.findUnique({ where: { id } });
 
     if (!user) {
