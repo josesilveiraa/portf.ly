@@ -21,7 +21,7 @@ $ cd packages/backend
 $ docker-compose up -d
 
 # Seed the database after putting the given values inside .env file
-$ yarn prisma db seed
+$ yarn prisma migrate dev --name init && yarn prisma db seed
 
 # Run development environment
 $ yarn start:dev
@@ -32,7 +32,7 @@ $ yarn start:dev
 - Nest.js
 - Node.js
 - Prisma
-- MongoDB
+- PostgreSQL
 - Jest
 
 ## :books: Notes
