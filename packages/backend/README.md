@@ -40,7 +40,7 @@ Once the server is running, you can access `http://localhost:3000/docs` to view 
 
 ## ✅ TODO (in order of priority)
 
-- [x] Unit testing
+- [ ] Unit testing
 - [ ] E2E testing
 - [x] Authentication
 - [x] Redis cache implementation
