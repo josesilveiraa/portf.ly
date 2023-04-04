@@ -49,4 +49,3 @@ $ yarn start:dev
 - [x] Redis cache implementation
 - [x] Swagger implementation
 - [ ] Next.js frontend
-- [ ] Implement replica set on `docker-compose.yml`. Use Atlas for now.
