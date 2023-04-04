@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { Project } from '@prisma/client';
 import { PrismaService } from 'src/database/prisma.service';
 import { CreateProjectDto } from 'src/projects/dto/create-project.dto';
@@ -27,6 +31,10 @@ export class PrismaProjectsRepository implements ProjectsRepository {
   }
 
   async findOne(id: number): Promise<Project> {
+    if (isNaN(id)) {
+      throw new BadRequestException('id must be a number');
+    }
+
     const project = await this.prisma.project.findUnique({ where: { id } });
 
     if (!project) {
