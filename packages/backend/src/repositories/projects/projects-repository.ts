@@ -14,9 +14,9 @@ export abstract class ProjectsRepository {
 
   abstract findAll(): Promise<Project[]>;
 
-  abstract findOne(id: string): Promise<Project>;
+  abstract findOne(id: number): Promise<Project>;
 
-  abstract update(id: string, updateData: ProjectUpdateData): Promise<Project>;
+  abstract update(id: number, updateData: ProjectUpdateData): Promise<Project>;
 
-  abstract remove(id: string): Promise<Project>;
+  abstract remove(id: number): Promise<Project>;
 }

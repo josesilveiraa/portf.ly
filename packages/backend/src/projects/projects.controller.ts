@@ -66,7 +66,7 @@ export class ProjectsController {
   })
   @ApiNotFoundResponse({ description: 'Project not found.' })
   async findOne(@Param('id') id: string) {
-    return await this.projectsRepository.findOne(id);
+    return await this.projectsRepository.findOne(+id);
   }
 
   @Patch(':id')
@@ -82,7 +82,7 @@ export class ProjectsController {
     @Param('id') id: string,
     @Body() updateProjectDto: UpdateProjectDto,
   ) {
-    return await this.projectsRepository.update(id, updateProjectDto);
+    return await this.projectsRepository.update(+id, updateProjectDto);
   }
 
   @Delete(':id')
@@ -96,6 +96,6 @@ export class ProjectsController {
     example: 'Bearer abc.123.xyz',
   })
   async remove(@Param('id') id: string) {
-    return await this.projectsRepository.remove(id);
+    return await this.projectsRepository.remove(+id);
   }
 }
