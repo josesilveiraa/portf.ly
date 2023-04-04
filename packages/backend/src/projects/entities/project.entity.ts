@@ -3,7 +3,7 @@ import { Project } from '@prisma/client';
 
 export class ProjectEntity implements Project {
   @ApiProperty()
-  id: number;
+  id: string;
 
   @ApiProperty()
   title: string;

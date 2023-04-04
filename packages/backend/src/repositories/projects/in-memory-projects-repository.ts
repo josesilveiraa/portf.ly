@@ -16,7 +16,7 @@ export class InMemoryProjectsRepository implements ProjectsRepository {
   async create(data: CreateProjectDto): Promise<ProjectEntity> {
     const project: ProjectEntity = {
       ...data,
-      id: this.projects.length + 1,
+      id: `project-${this.projects.length + 1}`,
     };
 
     this.projects.push(project);
@@ -28,11 +28,7 @@ export class InMemoryProjectsRepository implements ProjectsRepository {
     return this.projects;
   }
 
-  async findOne(id: number): Promise<ProjectEntity> {
-    if (isNaN(id)) {
-      throw new Error('id must be a number');
-    }
-
+  async findOne(id: string): Promise<ProjectEntity> {
     const project = this.projects.find((project) => project.id === id);
 
     if (!project) {
@@ -43,7 +39,7 @@ export class InMemoryProjectsRepository implements ProjectsRepository {
   }
 
   async update(
-    targetId: number,
+    targetId: string,
     updateData: ProjectUpdateData,
   ): Promise<ProjectEntity> {
     const projectIndex = this.projects.findIndex(
@@ -64,7 +60,7 @@ export class InMemoryProjectsRepository implements ProjectsRepository {
     return updatedProject;
   }
 
-  async remove(targetId: number): Promise<ProjectEntity> {
+  async remove(targetId: string): Promise<ProjectEntity> {
     const project = await this.findOne(targetId);
     const index = this.projects.findIndex((p) => p.id === project.id);
 

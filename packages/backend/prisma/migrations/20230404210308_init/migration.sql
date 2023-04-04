@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "User" (
-    "id" SERIAL NOT NULL,
+    "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "username" TEXT NOT NULL,
     "password" TEXT NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE "User" (
 
 -- CreateTable
 CREATE TABLE "Project" (
-    "id" SERIAL NOT NULL,
+    "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "repository" TEXT NOT NULL,
     "description" TEXT,

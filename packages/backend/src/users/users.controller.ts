@@ -66,7 +66,7 @@ export class UsersController {
     example: 'Bearer abc.123.xyz',
   })
   async findOne(@Param('id') id: string) {
-    return await this.usersRepository.findOne(+id);
+    return await this.usersRepository.findOne(id);
   }
 
   @Patch(':id')
@@ -79,7 +79,7 @@ export class UsersController {
     example: 'Bearer abc.123.xyz',
   })
   async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return await this.usersRepository.update(+id, updateUserDto);
+    return await this.usersRepository.update(id, updateUserDto);
   }
 
   @Delete(':id')
@@ -93,6 +93,6 @@ export class UsersController {
     example: 'Bearer abc.123.xyz',
   })
   async remove(@Param('id') id: string) {
-    return await this.usersRepository.remove(+id);
+    return await this.usersRepository.remove(id);
   }
 }

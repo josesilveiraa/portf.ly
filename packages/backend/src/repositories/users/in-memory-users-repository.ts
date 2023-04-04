@@ -14,7 +14,7 @@ export class InMemoryUsersRepository implements UsersRepository {
   async create(data: CreateUserDto): Promise<UserEntity> {
     const user: UserEntity = {
       ...data,
-      id: this.users.length + 1,
+      id: `user-${this.users.length + 1}`,
     };
 
     this.users.push(user);
@@ -26,11 +26,7 @@ export class InMemoryUsersRepository implements UsersRepository {
     return this.users;
   }
 
-  async findOne(id: number): Promise<UserEntity> {
-    if (isNaN(id)) {
-      throw new Error('id must be a number');
-    }
-
+  async findOne(id: string): Promise<UserEntity> {
     const user = this.users.find((user) => user.id === id);
 
     if (!user) {
@@ -50,7 +46,7 @@ export class InMemoryUsersRepository implements UsersRepository {
     return user;
   }
 
-  async update(id: number, updateData: UserUpdateData): Promise<UserEntity> {
+  async update(id: string, updateData: UserUpdateData): Promise<UserEntity> {
     const index = this.users.findIndex((user) => user.id === id);
 
     if (index < 0) {
@@ -67,7 +63,7 @@ export class InMemoryUsersRepository implements UsersRepository {
     return updatedUser;
   }
 
-  async remove(id: number): Promise<UserEntity> {
+  async remove(id: string): Promise<UserEntity> {
     const user = await this.findOne(id);
     const index = this.users.findIndex((u) => u.id === user.id);
 

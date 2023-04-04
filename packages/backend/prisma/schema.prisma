@@ -12,14 +12,14 @@ datasource db {
 
 // The application won't have normal users, as it doesn't require any user action.
 model User {
-  id       Int    @id @default(autoincrement())
+  id       String @id @default(cuid())
   email    String @unique
   username String
   password String
 }
 
 model Project {
-  id           Int     @id @default(autoincrement())
+  id           String  @id @default(cuid())
   title        String
   repository   String
   description  String?

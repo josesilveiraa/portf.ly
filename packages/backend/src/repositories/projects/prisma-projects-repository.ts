@@ -1,8 +1,4 @@
-import {
-  BadRequestException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Project } from '@prisma/client';
 import { PrismaService } from 'src/database/prisma.service';
 import { CreateProjectDto } from 'src/projects/dto/create-project.dto';
@@ -30,11 +26,7 @@ export class PrismaProjectsRepository implements ProjectsRepository {
     return await this.prisma.project.findMany();
   }
 
-  async findOne(id: number): Promise<Project> {
-    if (isNaN(id)) {
-      throw new BadRequestException('id must be a number');
-    }
-
+  async findOne(id: string): Promise<Project> {
     const project = await this.prisma.project.findUnique({ where: { id } });
 
     if (!project) {
@@ -45,7 +37,7 @@ export class PrismaProjectsRepository implements ProjectsRepository {
   }
 
   async update(
-    targetId: number,
+    targetId: string,
     updateData: ProjectUpdateData,
   ): Promise<Project> {
     const { id } = await this.findOne(targetId);
@@ -56,7 +48,7 @@ export class PrismaProjectsRepository implements ProjectsRepository {
     });
   }
 
-  async remove(targetId: number): Promise<Project> {
+  async remove(targetId: string): Promise<Project> {
     const { id } = await this.findOne(targetId);
 
     return await this.prisma.project.delete({ where: { id } });
