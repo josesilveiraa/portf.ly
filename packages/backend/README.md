@@ -27,11 +27,11 @@ $ yarn start:dev
 
 ## :closed_book: Notes
 
- - The default user is `admin@admin.com` and its password is `admin@123`
- - The pgAdmin email is `admin@admin.com` the password is `admin123`
- - The database user is located in the `docker-compose.yml` file
- - Once you have all containers running, you can access the database administration page on `http://localhost:5050`.
- - Once the server is running, you can access `http://localhost:3000/docs` to view the entire API description.
+- The default user is `admin@admin.com` and its password is `admin@123`
+- The pgAdmin email is `admin@admin.com` the password is `admin123`
+- The database user is located in the `docker-compose.yml` file
+- Once you have all containers running, you can access the database administration page on `http://localhost:5050`.
+- Once the server is running, you can access `http://localhost:3000/docs` to view the entire API description.
 
 ## 🚀 Used technologies
 
