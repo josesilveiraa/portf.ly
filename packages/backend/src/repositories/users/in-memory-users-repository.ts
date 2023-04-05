@@ -1,6 +1,7 @@
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { UsersRepository } from './users-repository';
 import { UserEntity } from 'src/users/entities/user.entity';
+import { NotFoundException } from '@nestjs/common';
 
 interface UserUpdateData {
   email?: string;
@@ -30,7 +31,7 @@ export class InMemoryUsersRepository implements UsersRepository {
     const user = this.users.find((user) => user.id === id);
 
     if (!user) {
-      throw new Error(`User ${id} not found`);
+      throw new NotFoundException(`User ${id} not found`);
     }
 
     return user;
@@ -40,17 +41,18 @@ export class InMemoryUsersRepository implements UsersRepository {
     const user = this.users.find((user) => user.email === email);
 
     if (!user) {
-      throw new Error(`User with email ${email} not found`);
+      throw new NotFoundException(`User with email ${email} not found`);
     }
 
     return user;
   }
 
   async update(id: string, updateData: UserUpdateData): Promise<UserEntity> {
-    const index = this.users.findIndex((user) => user.id === id);
+    const user = await this.findOne(id);
+    const index = this.users.findIndex((target) => target.id === user.id);
 
     if (index < 0) {
-      throw new Error(`User with id ${id} not found`);
+      throw new NotFoundException(`User with id ${id} not found`);
     }
 
     const updatedUser = {
@@ -66,6 +68,10 @@ export class InMemoryUsersRepository implements UsersRepository {
   async remove(id: string): Promise<UserEntity> {
     const user = await this.findOne(id);
     const index = this.users.findIndex((u) => u.id === user.id);
+
+    if (index < 0) {
+      throw new NotFoundException(`User ${id} does not exist`);
+    }
 
     this.users.splice(index, 1);
 

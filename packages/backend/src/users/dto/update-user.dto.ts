@@ -6,13 +6,13 @@ import { CreateUserDto } from './create-user.dto';
 export class UpdateUserDto extends PartialType(CreateUserDto) {
   @IsEmail()
   @ApiProperty({ required: false })
-  email: string;
+  email?: string;
 
   @Length(8, 255)
   @ApiProperty({ required: false })
-  username: string;
+  username?: string;
 
   @IsStrongPassword()
   @ApiProperty({ required: false })
-  password: string;
+  password?: string;
 }
