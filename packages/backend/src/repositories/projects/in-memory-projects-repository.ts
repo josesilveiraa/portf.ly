@@ -1,3 +1,4 @@
+import { NotFoundException } from '@nestjs/common';
 import { ProjectsRepository } from './projects-repository';
 import { CreateProjectDto } from 'src/projects/dto/create-project.dto';
 import { ProjectEntity } from 'src/projects/entities/project.entity';
@@ -32,7 +33,7 @@ export class InMemoryProjectsRepository implements ProjectsRepository {
     const project = this.projects.find((project) => project.id === id);
 
     if (!project) {
-      throw new Error(`Project ${id} not found`);
+      throw new NotFoundException(`Project ${id} not found`);
     }
 
     return project;
@@ -42,13 +43,15 @@ export class InMemoryProjectsRepository implements ProjectsRepository {
     targetId: string,
     updateData: ProjectUpdateData,
   ): Promise<ProjectEntity> {
-    const projectIndex = this.projects.findIndex(
-      (project) => project.id === targetId,
-    );
+    const project = await this.findOne(targetId);
 
-    if (projectIndex < 0) {
-      throw new Error(`Project with id ${targetId} not found`);
+    if (!project) {
+      throw new NotFoundException(`Project ${targetId} not found`);
     }
+
+    const projectIndex = this.projects.findIndex(
+      (found) => found.id === project.id,
+    );
 
     const updatedProject = {
       ...this.projects[projectIndex],
@@ -60,9 +63,18 @@ export class InMemoryProjectsRepository implements ProjectsRepository {
     return updatedProject;
   }
 
-  async remove(targetId: string): Promise<ProjectEntity> {
-    const project = await this.findOne(targetId);
+  async remove(id: string): Promise<ProjectEntity> {
+    const project = await this.findOne(id);
+
+    if (!project) {
+      throw new NotFoundException(`Project  ${id} not found`);
+    }
+
     const index = this.projects.findIndex((p) => p.id === project.id);
+
+    if (index < 0) {
+      throw new NotFoundException(`Project ${id} not found`);
+    }
 
     this.projects.splice(index, 1);
 
