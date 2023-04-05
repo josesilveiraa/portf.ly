@@ -22,8 +22,8 @@ import {
   ApiHeader,
 } from '@nestjs/swagger';
 import { ProjectEntity } from './entities/project.entity';
-import { Public } from 'src/auth/is-public.decorator';
-import { ProjectsRepository } from 'src/repositories/projects/projects-repository';
+import { Public } from '../auth/is-public.decorator';
+import { ProjectsRepository } from '../repositories/projects/projects-repository';
 
 @ApiTags('projects')
 @Controller('projects')
