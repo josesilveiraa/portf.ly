@@ -2,7 +2,6 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UsersController } from './users.controller';
 import { UsersRepository } from '../repositories/users/users-repository';
 import { InMemoryUsersRepository } from '../repositories/users/in-memory-users-repository';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { UserEntity } from './entities/user.entity';
 import { NotFoundException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -82,6 +81,12 @@ describe('UsersController', () => {
 
       expect(actualUser).toBeDefined();
       expect(actualUser).toEqual(expectedUser);
+    });
+
+    it('should throw an error if user does not exist', async () => {
+      const id = 'user-6';
+
+      await expect(controller.findOne(id)).rejects.toThrow(NotFoundException);
     });
   });
 
@@ -166,9 +171,7 @@ describe('UsersController', () => {
 
       jest.spyOn(repository, 'findOne').mockResolvedValue(undefined);
 
-      await expect(controller.remove(id)).rejects.toThrowError(
-        NotFoundException,
-      );
+      await expect(controller.remove(id)).rejects.toThrow(NotFoundException);
       expect(repository.findOne).toHaveBeenCalledWith(id);
     });
   });
