@@ -42,7 +42,7 @@ $ yarn start:dev
 
 ## ✅ TODO (in order of priority)
 
-- [ ] Unit testing
+- [X] Unit testing
 - [ ] E2E testing
 - [x] Authentication
 - [x] Redis cache implementation
