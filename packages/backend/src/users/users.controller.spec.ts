@@ -6,7 +6,7 @@ import { UserEntity } from './entities/user.entity';
 import { NotFoundException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 
-const expectedUsers: UserEntity[] = [
+const users: UserEntity[] = [
   {
     email: 'user1@test.com',
     username: 'user1',
@@ -44,6 +44,10 @@ describe('UsersController', () => {
 
     controller = app.get<UsersController>(UsersController);
     repository = app.get<InMemoryUsersRepository>(UsersRepository);
+
+    for (const user of users) {
+      await repository.create(user);
+    }
   });
 
   it('should be defined', () => {
@@ -74,10 +78,8 @@ describe('UsersController', () => {
 
   describe('findOne', () => {
     it('should return a user by id', async () => {
-      const expectedUser = expectedUsers[0];
-      const createdUser = await repository.create(expectedUser);
-
-      const actualUser = await controller.findOne(createdUser.id);
+      const expectedUser = users[0];
+      const actualUser = await controller.findOne(expectedUser.id);
 
       expect(actualUser).toBeDefined();
       expect(actualUser).toEqual(expectedUser);
@@ -92,29 +94,17 @@ describe('UsersController', () => {
 
   describe('findAll', () => {
     it('should return an array of users', async () => {
-      expectedUsers.forEach(async (user) => {
-        await repository.create(user);
-      });
-
       const allUsers = await controller.findAll();
 
-      expect(allUsers).toHaveLength(expectedUsers.length);
+      expect(allUsers).toHaveLength(users.length);
+      expect(allUsers).toEqual(users);
       expect(Array.isArray(allUsers)).toBeTruthy();
-
-      expectedUsers.forEach((expectedUser) => {
-        const actualUser = allUsers.find(
-          (user) => user.email === expectedUser.email,
-        );
-
-        expect(actualUser).toBeDefined();
-        expect(actualUser.email).toEqual(expectedUser.email);
-      });
     });
   });
 
   describe('update', () => {
-    it('should update the user', async () => {
-      const userToUpdate = expectedUsers[1];
+    it('should update a user', async () => {
+      const userToUpdate = users[1];
       const updateData: UserEntity = {
         username: 'johnDoe',
         email: 'test@example.com',
@@ -127,14 +117,13 @@ describe('UsersController', () => {
       const result = await controller.update(userToUpdate.id, updateData);
 
       expect(result).not.toEqual(userToUpdate);
-      expect(repository.update).toHaveBeenCalled();
       expect(repository.update).toHaveBeenCalledWith(
         userToUpdate.id,
         updateData,
       );
     });
 
-    it('should return not found if the user does not exist', async () => {
+    it('should throw an error if the user does not exist', async () => {
       const id = 'user-6';
       const updateData: UserEntity = {
         username: 'johnDoe',
@@ -154,7 +143,7 @@ describe('UsersController', () => {
 
   describe('remove', () => {
     it('should delete a user', async () => {
-      const userToRemove = expectedUsers[2];
+      const userToRemove = users[2];
 
       jest.spyOn(repository, 'findOne').mockResolvedValue(userToRemove);
       jest.spyOn(repository, 'remove').mockResolvedValue(userToRemove);
@@ -169,7 +158,7 @@ describe('UsersController', () => {
     it('should throw an error if user does not exist', async () => {
       const id = 'user-6';
 
-      jest.spyOn(repository, 'findOne').mockResolvedValue(undefined);
+      jest.spyOn(repository, 'findOne').mockResolvedValueOnce(undefined);
 
       await expect(controller.remove(id)).rejects.toThrow(NotFoundException);
       expect(repository.findOne).toHaveBeenCalledWith(id);
