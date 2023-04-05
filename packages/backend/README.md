@@ -29,8 +29,8 @@ $ yarn start:dev
 
 - The default user is `admin@admin.com` and its password is `admin@123`
 - The database user is located in the `docker-compose.yml` file
-- Once you have all containers running, you can access the database administration page on `http://localhost:8080`.
-- Once the server is running, you can access `http://localhost:3000/docs` to view the entire API description.
+- Once you have all containers running, you can access the database administration page on `http://localhost:8080`
+- Once the server is running, you can access `http://localhost:3000/docs` to view the entire API description
 
 ## 🚀 Used technologies
 
