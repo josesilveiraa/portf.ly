@@ -49,10 +49,15 @@ export class InMemoryUsersRepository implements UsersRepository {
 
   async update(id: string, updateData: UserUpdateData): Promise<UserEntity> {
     const user = await this.findOne(id);
+
+    if (!user) {
+      throw new NotFoundException(`User ${id} not found`);
+    }
+
     const index = this.users.findIndex((target) => target.id === user.id);
 
     if (index < 0) {
-      throw new NotFoundException(`User with id ${id} not found`);
+      throw new NotFoundException(`User ${id} not found`);
     }
 
     const updatedUser = {
@@ -67,10 +72,15 @@ export class InMemoryUsersRepository implements UsersRepository {
 
   async remove(id: string): Promise<UserEntity> {
     const user = await this.findOne(id);
+
+    if (!user) {
+      throw new NotFoundException(`User ${id} not found`);
+    }
+
     const index = this.users.findIndex((u) => u.id === user.id);
 
     if (index < 0) {
-      throw new NotFoundException(`User ${id} does not exist`);
+      throw new NotFoundException(`User ${id} not found`);
     }
 
     this.users.splice(index, 1);
