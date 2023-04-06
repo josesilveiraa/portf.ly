@@ -12,9 +12,10 @@ datasource db {
 
 // The application won't have normal users, as it doesn't require any user action.
 model User {
-  id       String @id @default(cuid())
-  email    String @unique
-  username String @unique
+  id       String    @id @default(cuid())
+  email    String    @unique
+  username String    @unique
+  projects Project[]
   password String
 }
 
@@ -25,4 +26,6 @@ model Project {
   description  String?
   readme       String
   previewImage String
+  User         User?   @relation(fields: [userId], references: [id])
+  userId       String?
 }
