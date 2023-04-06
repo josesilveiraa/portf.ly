@@ -1,11 +1,7 @@
-import {
-  BadRequestException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { User } from '@prisma/client';
-import { PrismaService } from 'src/database/prisma.service';
-import { CreateUserDto } from 'src/users/dto/create-user.dto';
+import { PrismaService } from '../../database/prisma.service';
+import { CreateUserDto } from '../../users/dto/create-user.dto';
 import { UsersRepository } from './users-repository';
 
 interface UserUpdateData {

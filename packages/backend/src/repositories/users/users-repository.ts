@@ -1,5 +1,5 @@
 import { User } from '@prisma/client';
-import { CreateUserDto } from 'src/users/dto/create-user.dto';
+import { CreateUserDto } from '../../users/dto/create-user.dto';
 
 interface UserUpdateData {
   email?: string;

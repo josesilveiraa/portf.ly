@@ -1,5 +1,5 @@
 import { Project } from '@prisma/client';
-import { CreateProjectDto } from 'src/projects/dto/create-project.dto';
+import { CreateProjectDto } from '../../projects/dto/create-project.dto';
 
 interface ProjectUpdateData {
   title?: string;

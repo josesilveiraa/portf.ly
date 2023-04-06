@@ -1,6 +1,6 @@
-import { CreateUserDto } from 'src/users/dto/create-user.dto';
+import { CreateUserDto } from '../../users/dto/create-user.dto';
 import { UsersRepository } from './users-repository';
-import { UserEntity } from 'src/users/entities/user.entity';
+import { UserEntity } from '../../users/entities/user.entity';
 import { NotFoundException } from '@nestjs/common';
 
 interface UserUpdateData {

@@ -1,7 +1,7 @@
 import { NotFoundException } from '@nestjs/common';
 import { ProjectsRepository } from './projects-repository';
-import { CreateProjectDto } from 'src/projects/dto/create-project.dto';
-import { ProjectEntity } from 'src/projects/entities/project.entity';
+import { CreateProjectDto } from '../../projects/dto/create-project.dto';
+import { ProjectEntity } from '../../projects/entities/project.entity';
 
 interface ProjectUpdateData {
   title?: string;
