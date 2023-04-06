@@ -21,6 +21,10 @@ export class CreateProjectDto {
 
   @ApiProperty()
   @IsNotEmpty()
+  userId: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
   @IsUrl()
   previewImage: string;
 }

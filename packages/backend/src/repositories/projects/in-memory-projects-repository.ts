@@ -9,6 +9,7 @@ interface ProjectUpdateData {
   description?: string;
   readme?: string;
   previewImage?: string;
+  userId?: string;
 }
 
 export class InMemoryProjectsRepository implements ProjectsRepository {

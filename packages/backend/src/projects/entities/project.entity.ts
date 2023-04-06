@@ -18,5 +18,8 @@ export class ProjectEntity implements Project {
   readme: string;
 
   @ApiProperty()
+  userId: string;
+
+  @ApiProperty()
   previewImage: string;
 }

@@ -15,6 +15,7 @@ export class InMemoryUsersRepository implements UsersRepository {
   async create(data: CreateUserDto): Promise<UserEntity> {
     const user: UserEntity = {
       ...data,
+      projects: [],
       id: `user-${this.users.length + 1}`,
     };
 

@@ -25,5 +25,9 @@ export class UpdateProjectDto extends PartialType(CreateProjectDto) {
   readme?: string;
 
   @ApiProperty({ required: false })
+  @IsNotEmpty()
+  userId?: string;
+
+  @ApiProperty({ required: false })
   previewImage?: string;
 }

@@ -31,15 +31,19 @@ export class PrismaUsersRepository implements UsersRepository {
 
     return await this.prisma.user.create({
       data: { email, username, password },
+      include: { projects: true },
     });
   }
 
   async findAll(): Promise<User[]> {
-    return await this.prisma.user.findMany();
+    return await this.prisma.user.findMany({ include: { projects: true } });
   }
 
   async findOne(id: string): Promise<User> {
-    const user = await this.prisma.user.findUnique({ where: { id } });
+    const user = await this.prisma.user.findUnique({
+      where: { id },
+      include: { projects: true },
+    });
 
     if (!user) {
       throw new NotFoundException(`User with id ${id} not found`);
@@ -49,7 +53,10 @@ export class PrismaUsersRepository implements UsersRepository {
   }
 
   async findOneByEmail(email: string): Promise<User> {
-    const user = await this.prisma.user.findUnique({ where: { email } });
+    const user = await this.prisma.user.findUnique({
+      where: { email },
+      include: { projects: true },
+    });
 
     if (!user) {
       throw new NotFoundException(`User with email ${email} not found`);
@@ -61,7 +68,10 @@ export class PrismaUsersRepository implements UsersRepository {
   async remove(targetId: string): Promise<User> {
     const { id } = await this.findOne(targetId);
 
-    return await this.prisma.user.delete({ where: { id } });
+    return await this.prisma.user.delete({
+      where: { id },
+      include: { projects: true },
+    });
   }
 
   async update(targetId: string, data: UserUpdateData): Promise<User> {
@@ -69,6 +79,7 @@ export class PrismaUsersRepository implements UsersRepository {
 
     return await this.prisma.user.update({
       where: { id },
+      include: { projects: true },
       data,
     });
   }
