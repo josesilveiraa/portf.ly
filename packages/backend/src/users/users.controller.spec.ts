@@ -103,7 +103,7 @@ describe('UsersController', () => {
   });
 
   describe('update', () => {
-    it('should update a user', async () => {
+    it('should update an user', async () => {
       const userToUpdate = users[1];
       const updateData: UserEntity = {
         username: 'johnDoe',
@@ -155,7 +155,7 @@ describe('UsersController', () => {
       expect(repository.remove).toHaveBeenCalledWith(userToRemove.id);
     });
 
-    it('should throw an error if user does not exist', async () => {
+    it('should throw an error if the user does not exist', async () => {
       const id = 'user-6';
 
       jest.spyOn(repository, 'findOne').mockResolvedValueOnce(undefined);
