@@ -10,12 +10,6 @@ services:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root123
       - POSTGRES_DB=portfly
-  adminer:
-    image: adminer
-    container_name: portfly-adminer
-    restart: always
-    ports:
-      - 8080:8080
   redis:
     image: redis
     container_name: portfly-redis-server
