@@ -21,14 +21,14 @@ async function getData(id: string) {
 
 export default async function Project({ params: { projectId } }: { params: { projectId: string } }) {
 
-  const data = await getData(projectId);
+  const data = await getData(projectId) as Project;
 
   return (
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <picture>
             <img
-              src={data?.previewImage}
+              src={data.previewImage}
               className="max-w-sm rounded-lg shadow-2xl"
               alt='project-image'
             />
@@ -39,7 +39,7 @@ export default async function Project({ params: { projectId } }: { params: { pro
               {data.description}
             </p>
             <textarea readOnly className="textarea textarea-bordered textarea-lg w-full mb-6" value={data.readme}></textarea>
-            <Link href={`${data?.repository}`}>
+            <Link href={data.repository} target="_blank">
               <div className="flex justify-center">
                 <button className="btn btn-primary w-full max-w-2xl">Go to repository</button>
               </div>
