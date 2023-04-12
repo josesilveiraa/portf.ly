@@ -10,9 +10,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full bg-gray-800 ">
       <body>
-          <Navbar />
-          {children}
-          <Footer />
+        <Navbar />
+        {children}
+        <Footer />
       </body>
     </html>
   );

@@ -1,4 +1,4 @@
-import ProjectCard from "./cards/ProjectCard";
+import ProjectCard from './cards/ProjectCard';
 
 interface Project {
   id: string;
@@ -12,7 +12,7 @@ interface Project {
 async function getData() {
   const res = await fetch('http://0.0.0.0:3333/api/v1/projects');
 
-  if(!res.ok) {
+  if (!res.ok) {
     throw new Error('Failed to fetch data');
   }
 

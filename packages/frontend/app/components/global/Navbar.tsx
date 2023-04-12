@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from 'next/link';
 
 export default function Navbar() {
   return (
@@ -11,14 +11,10 @@ export default function Navbar() {
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link href="#">
-              About
-            </Link>
+            <Link href="#">About</Link>
           </li>
           <li>
-            <Link href="/admin/login">
-              Log-in
-            </Link>
+            <Link href="/admin/login">Log-in</Link>
           </li>
         </ul>
       </div>

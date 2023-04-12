@@ -1,8 +1,6 @@
-import Footer from "../../components/global/Footer";
-
+import Footer from '../../components/global/Footer';
 
 export default function Login() {
-
   return (
     <div className="relative flex flex-col justify-center h-screen overflow-hidden">
       <div className="w-full p-6 m-auto bg-neutral rounded-md shadow-md ring-2 ring-gray-800/50 lg:max-w-lg">

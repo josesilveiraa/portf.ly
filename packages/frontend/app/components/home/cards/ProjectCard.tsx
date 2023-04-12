@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link';
 
 interface CardData {
   projectId: string;
@@ -19,10 +19,7 @@ export default function ProjectCard({
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <picture>
-        <img
-          src={imageUrl}
-          alt={projectId}
-        />
+        <img src={imageUrl} alt={projectId} />
       </picture>
       <div className="card-body">
         <h2 className="card-title">{title}</h2>
