@@ -21,7 +21,7 @@ async function getData(id: string) {
 
 export default async function Project({ params: { projectId } }: { params: { projectId: string } }) {
 
-  const data = await getData(projectId) as Project;
+  const data: Project = await getData(projectId);
 
   return (
       <div className="hero min-h-screen bg-base-200">
