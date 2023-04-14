@@ -5,7 +5,7 @@ export default function About() {
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content text-center">
-        <div className="min-w-max">
+        <div className="min-w-xs">
           <h1 className="text-5xl font-bold">What is Portf.ly?</h1>
           <p className="py-6">
             Portf.ly is an impressive open-source portfolio managing project
