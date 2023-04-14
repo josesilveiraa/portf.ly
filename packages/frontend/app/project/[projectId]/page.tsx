@@ -9,6 +9,10 @@ interface Project {
   previewImage?: string;
 }
 
+interface IProjectProps {
+  projectId: string;
+}
+
 async function getData(id: string) {
   const res = await fetch(`http://0.0.0.0:3000/api/v1/projects/${id}`);
 
@@ -22,7 +26,7 @@ async function getData(id: string) {
 export default async function Project({
   params: { projectId },
 }: {
-  params: { projectId: string };
+  params: IProjectProps;
 }) {
   const data: Project = await getData(projectId);
 
@@ -41,7 +45,7 @@ export default async function Project({
           <p className="py-6">{data.description}</p>
           <textarea
             readOnly
-            className="textarea textarea-bordered textarea-lg w-full mb-6"
+            className="textarea textarea-bordered textarea-lg w-full mb-6 resize-none"
             value={data.readme}
           ></textarea>
           <Link href={data.repository} target="_blank">
