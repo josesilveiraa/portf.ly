@@ -26,6 +26,7 @@ $ yarn dev
 - SSR
 - Next.js
 - TailwindCSS
+- DaisyUI
 
 ## ✅ TODO (in order of priority)
 
