@@ -9,19 +9,11 @@ interface Project {
   previewImage: string;
 }
 
-async function getData() {
-  const res = await fetch('http://0.0.0.0:3333/api/v1/projects');
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
-
-  return res.json();
+interface IProjectListProps {
+  data: Project[];
 }
 
-export default async function ProjectList() {
-  const data = await getData();
-
+export default async function ProjectList({ data }: IProjectListProps) {
   return (
     <div className="min-h-screen">
       <div className="m-10 grid gap-x-32 gap-y-20 sm:grid-cols-1 lg:grid-cols-3">
