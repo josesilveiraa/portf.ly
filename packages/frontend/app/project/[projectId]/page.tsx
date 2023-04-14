@@ -1,6 +1,7 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
 
-interface Project {
+interface IProject {
   id: string;
   title: string;
   repository: string;
@@ -10,10 +11,12 @@ interface Project {
 }
 
 interface IProjectProps {
-  projectId: string;
+  params: {
+    projectId: string;
+  };
 }
 
-async function getData(id: string) {
+async function getData(id: string): Promise<IProject> {
   const res = await fetch(`http://0.0.0.0:3000/api/v1/projects/${id}`);
 
   if (!res.ok) {
@@ -23,12 +26,18 @@ async function getData(id: string) {
   return res.json();
 }
 
-export default async function Project({
+export const generateMetadata = async ({
+  params,
+}: IProjectProps): Promise<Metadata> => {
+  const project = await getData(params.projectId);
+
+  return { title: project.title };
+};
+
+export default async function IProject({
   params: { projectId },
-}: {
-  params: IProjectProps;
-}) {
-  const data: Project = await getData(projectId);
+}: IProjectProps) {
+  const data: IProject = await getData(projectId);
 
   return (
     <div className="hero min-h-screen bg-base-200">
