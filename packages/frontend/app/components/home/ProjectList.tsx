@@ -24,7 +24,7 @@ export default async function ProjectList() {
 
   return (
     <div className="min-h-screen">
-      <div className="mt-10 grid gap-x-32 gap-y-20 grid-cols-3">
+      <div className="m-10 grid gap-x-32 gap-y-20 sm:grid-cols-1 lg:grid-cols-3">
         {data.map((project: Project, index: number) => (
           <ProjectCard
             key={index}
