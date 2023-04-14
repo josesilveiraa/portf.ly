@@ -17,7 +17,9 @@ interface IProjectProps {
 }
 
 async function getData(id: string): Promise<IProject> {
-  const res = await fetch(`http://0.0.0.0:3000/api/v1/projects/${id}`);
+  const res = await fetch(`http://0.0.0.0:3333/api/v1/projects/${id}`, {
+    cache: 'no-store',
+  });
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');
