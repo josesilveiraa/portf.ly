@@ -8,7 +8,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="h-full bg-gray-800 ">
+    <html lang="en" className="bg-gray-800 ">
       <body>
         <Navbar />
         {children}

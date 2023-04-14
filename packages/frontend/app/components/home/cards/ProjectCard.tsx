@@ -19,7 +19,7 @@ export default function ProjectCard({
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <picture>
-        <img src={imageUrl} alt={projectId} />
+        <img src={imageUrl} alt={projectId} className="rounded-md" />
       </picture>
       <div className="card-body">
         <h2 className="card-title">{title}</h2>

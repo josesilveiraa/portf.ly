@@ -23,18 +23,20 @@ export default async function ProjectList() {
   const data = await getData();
 
   return (
-    <div className="mt-10 grid gap-x-32 gap-y-20 grid-cols-3 mb-10">
-      {data.map((project: Project, index: number) => (
-        <ProjectCard
-          key={index}
-          projectId={project.id}
-          category="Project"
-          imageUrl={project.previewImage}
-          title={project.title}
-          description={project.description}
-          buttonContent="View"
-        />
-      ))}
+    <div className="min-h-screen">
+      <div className="mt-10 grid gap-x-32 gap-y-20 grid-cols-3">
+        {data.map((project: Project, index: number) => (
+          <ProjectCard
+            key={index}
+            projectId={project.id}
+            category="Project"
+            imageUrl={project.previewImage}
+            title={project.title}
+            description={project.description}
+            buttonContent="View"
+          />
+        ))}
+      </div>
     </div>
   );
 }

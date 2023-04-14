@@ -1,5 +1,3 @@
-import Footer from '../../components/global/Footer';
-
 export default function Login() {
   return (
     <div className="relative flex flex-col justify-center h-screen overflow-hidden">
