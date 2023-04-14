@@ -1,3 +1,9 @@
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Portf.ly - Login',
+};
+
 export default function Login() {
   return (
     <div className="relative flex flex-col justify-center h-screen overflow-hidden">
