@@ -18,7 +18,7 @@ interface UserUpdateData {
 export class PrismaUsersRepository implements UsersRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(data: CreateUserDto): Promise<User> {
+  async create(data: CreateUserDto): Promise<void> {
     const { email, username, password } = data;
 
     const userExists = await this.userExists(username, email);
@@ -29,7 +29,7 @@ export class PrismaUsersRepository implements UsersRepository {
       );
     }
 
-    return await this.prisma.user.create({
+    await this.prisma.user.create({
       data: { email, username, password },
       include: { projects: true },
     });

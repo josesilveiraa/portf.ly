@@ -12,7 +12,7 @@ interface UserUpdateData {
 export class InMemoryUsersRepository implements UsersRepository {
   private users: UserEntity[] = [];
 
-  async create(data: CreateUserDto): Promise<UserEntity> {
+  async create(data: CreateUserDto): Promise<void> {
     const user: UserEntity = {
       ...data,
       projects: [],
@@ -20,8 +20,6 @@ export class InMemoryUsersRepository implements UsersRepository {
     };
 
     this.users.push(user);
-
-    return user;
   }
 
   async findAll(): Promise<UserEntity[]> {

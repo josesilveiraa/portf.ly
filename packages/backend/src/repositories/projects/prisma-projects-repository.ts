@@ -16,8 +16,8 @@ interface ProjectUpdateData {
 export class PrismaProjectsRepository implements ProjectsRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(data: CreateProjectDto): Promise<Project> {
-    return await this.prisma.project.create({
+  async create(data: CreateProjectDto): Promise<void> {
+    await this.prisma.project.create({
       data,
     });
   }

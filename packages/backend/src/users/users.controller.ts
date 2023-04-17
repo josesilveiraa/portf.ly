@@ -37,6 +37,7 @@ export class UsersController {
     description: 'The authorization token.',
     example: 'Bearer abc.123.xyz',
   })
+  @HttpCode(HttpStatus.CREATED)
   async create(@Body() createUserDto: CreateUserDto) {
     return await this.usersRepository.create(createUserDto);
   }

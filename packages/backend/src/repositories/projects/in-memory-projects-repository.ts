@@ -15,15 +15,13 @@ interface ProjectUpdateData {
 export class InMemoryProjectsRepository implements ProjectsRepository {
   private projects: ProjectEntity[] = [];
 
-  async create(data: CreateProjectDto): Promise<ProjectEntity> {
+  async create(data: CreateProjectDto): Promise<void> {
     const project: ProjectEntity = {
       ...data,
       id: `project-${this.projects.length + 1}`,
     };
 
     this.projects.push(project);
-
-    return project;
   }
 
   async findAll(): Promise<ProjectEntity[]> {

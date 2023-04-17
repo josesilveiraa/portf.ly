@@ -8,7 +8,7 @@ interface UserUpdateData {
 }
 
 export abstract class UsersRepository {
-  abstract create(data: CreateUserDto): Promise<User>;
+  abstract create(data: CreateUserDto): Promise<void>;
 
   abstract findAll(): Promise<User[]>;
 

@@ -41,6 +41,7 @@ export class ProjectsController {
     description: 'The authorization token.',
     example: 'Bearer abc.123.xyz',
   })
+  @HttpCode(HttpStatus.CREATED)
   async create(@Body() createProjectDto: CreateProjectDto) {
     return await this.projectsRepository.create(createProjectDto);
   }

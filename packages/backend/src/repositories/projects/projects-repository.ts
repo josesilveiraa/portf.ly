@@ -10,7 +10,7 @@ interface ProjectUpdateData {
 }
 
 export abstract class ProjectsRepository {
-  abstract create(data: CreateProjectDto): Promise<Project>;
+  abstract create(data: CreateProjectDto): Promise<void>;
 
   abstract findAll(): Promise<Project[]>;
 
