@@ -13,7 +13,7 @@ You can get started by taking a look on [@portf.ly/backend](https://github.com/j
 - Nest.js
 - Node.js
 - Prisma
-- MongoDB
+- PostgreSQL
 - Jest
 
 ## **Frontend**
