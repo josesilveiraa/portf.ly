@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import ProjectList from './components/home/ProjectList';
+import ProjectList from '../components/home/ProjectList';
 
 export const metadata: Metadata = {
   title: 'Portf.ly - Projects',
