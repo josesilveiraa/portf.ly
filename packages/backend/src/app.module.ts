@@ -1,4 +1,5 @@
-import { CacheInterceptor, CacheModule, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
+import { CacheModule, CacheInterceptor } from '@nestjs/cache-manager';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ProjectsModule } from './shared/projects/projects.module';
 import { UsersModule } from './shared/users/users.module';
