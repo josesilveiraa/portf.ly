@@ -22,7 +22,7 @@ import {
   ApiHeader,
 } from '@nestjs/swagger';
 import { ProjectEntity } from './entities/project.entity';
-import { Public } from '../auth/is-public.decorator';
+import { Public } from '../../auth/is-public.decorator';
 import { ProjectsRepository } from '../repositories/projects/projects-repository';
 
 @ApiTags('projects')

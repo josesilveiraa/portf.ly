@@ -1,7 +1,7 @@
 import { CacheInterceptor, CacheModule, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { ProjectsModule } from './projects/projects.module';
-import { UsersModule } from './users/users.module';
+import { ProjectsModule } from './shared/projects/projects.module';
+import { UsersModule } from './shared/users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { AppController } from './app.controller';
 import { APP_INTERCEPTOR } from '@nestjs/core';
