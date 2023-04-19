@@ -26,6 +26,7 @@
     "@fastify/compress": "^6.2.0",
     "@fastify/helmet": "^10.1.0",
     "@fastify/static": "^6.9.0",
+    "@nestjs/cache-manager": "^1.0.0",
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.3.1",
     "@nestjs/core": "^9.0.0",
