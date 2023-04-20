@@ -16,8 +16,11 @@ export class InMemoryProjectsRepository implements ProjectsRepository {
   private projects: ProjectEntity[] = [];
 
   async create(data: CreateProjectDto): Promise<void> {
+    const now = new Date();
     const project: ProjectEntity = {
       ...data,
+      createdAt: now,
+      updatedAt: now,
       id: `project-${this.projects.length + 1}`,
     };
 

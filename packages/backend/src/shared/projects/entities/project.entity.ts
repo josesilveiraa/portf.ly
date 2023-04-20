@@ -22,4 +22,10 @@ export class ProjectEntity implements Project {
 
   @ApiProperty()
   previewImage: string;
+
+  @ApiProperty()
+  createdAt: Date;
+
+  @ApiProperty()
+  updatedAt: Date;
 }
