@@ -19,7 +19,7 @@ $ cd packages/backend
 $ docker-compose up -d
 
 # Seed the database after putting the given values inside .env file
-$ yarn prisma migrate dev --name init && yarn prisma db seed
+$ yarn prisma migrate dev && yarn prisma db seed
 
 # Run development environment
 $ yarn start:dev
@@ -42,7 +42,7 @@ $ yarn start:dev
 
 ## ✅ TODO (in order of priority)
 
-- [X] Unit testing
+- [x] Unit testing
 - [ ] E2E testing
 - [x] Authentication
 - [x] Redis cache implementation
