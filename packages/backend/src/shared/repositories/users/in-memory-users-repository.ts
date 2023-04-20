@@ -13,11 +13,12 @@ export class InMemoryUsersRepository implements UsersRepository {
   private users: UserEntity[] = [];
 
   async create(data: CreateUserDto): Promise<void> {
+    const now = new Date();
     const user: UserEntity = {
       ...data,
       projects: [],
-      createdAt: new Date(),
-      updatedAt: null,
+      createdAt: now,
+      updatedAt: now,
       id: `user-${this.users.length + 1}`,
     };
 
