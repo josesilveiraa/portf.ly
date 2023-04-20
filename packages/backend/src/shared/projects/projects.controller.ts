@@ -55,7 +55,9 @@ export class ProjectsController {
     description: 'All project records.',
   })
   async findAll() {
-    return await this.projectsRepository.findAll();
+    const data = await this.projectsRepository.findAll();
+
+    return { data };
   }
 
   @Public()
@@ -67,7 +69,9 @@ export class ProjectsController {
   })
   @ApiNotFoundResponse({ description: 'Project not found.' })
   async findOne(@Param('id') id: string) {
-    return await this.projectsRepository.findOne(id);
+    const data = await this.projectsRepository.findOne(id);
+
+    return { data };
   }
 
   @Patch(':id')
@@ -83,7 +87,9 @@ export class ProjectsController {
     @Param('id') id: string,
     @Body() updateProjectDto: UpdateProjectDto,
   ) {
-    return await this.projectsRepository.update(id, updateProjectDto);
+    const data = await this.projectsRepository.update(id, updateProjectDto);
+
+    return { data };
   }
 
   @Delete(':id')
@@ -97,6 +103,8 @@ export class ProjectsController {
     example: 'Bearer abc.123.xyz',
   })
   async remove(@Param('id') id: string) {
-    return await this.projectsRepository.remove(id);
+    const data = await this.projectsRepository.remove(id);
+
+    return { data };
   }
 }

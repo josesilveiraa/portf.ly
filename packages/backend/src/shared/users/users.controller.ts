@@ -51,7 +51,9 @@ export class UsersController {
     example: 'Bearer abc.123.xyz',
   })
   async findAll() {
-    return await this.usersRepository.findAll();
+    const data = await this.usersRepository.findAll();
+
+    return { data };
   }
 
   @Get(':id')
@@ -67,7 +69,9 @@ export class UsersController {
     example: 'Bearer abc.123.xyz',
   })
   async findOne(@Param('id') id: string) {
-    return await this.usersRepository.findOne(id);
+    const data = await this.usersRepository.findOne(id);
+
+    return { data };
   }
 
   @Patch(':id')
@@ -80,7 +84,9 @@ export class UsersController {
     example: 'Bearer abc.123.xyz',
   })
   async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return await this.usersRepository.update(id, updateUserDto);
+    const data = await this.usersRepository.update(id, updateUserDto);
+
+    return { data };
   }
 
   @Delete(':id')
@@ -94,6 +100,8 @@ export class UsersController {
     example: 'Bearer abc.123.xyz',
   })
   async remove(@Param('id') id: string) {
-    return await this.usersRepository.remove(id);
+    const data = await this.usersRepository.remove(id);
+
+    return { data };
   }
 }
