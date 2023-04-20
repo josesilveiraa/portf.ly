@@ -27,7 +27,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Portfolio API')
     .setDescription('Portfolio API description')
-    .setVersion('0.1')
+    .setVersion('1.0')
     .addTag('projects')
     .addTag('users')
     .build();
