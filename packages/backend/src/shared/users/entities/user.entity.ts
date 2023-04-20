@@ -15,5 +15,11 @@ export class UserEntity implements User {
   @ApiProperty()
   projects: ProjectEntity[];
 
+  @ApiProperty()
+  createdAt: Date;
+
+  @ApiProperty()
+  updatedAt: Date;
+
   password: string;
 }

@@ -16,6 +16,8 @@ export class InMemoryUsersRepository implements UsersRepository {
     const user: UserEntity = {
       ...data,
       projects: [],
+      createdAt: new Date(),
+      updatedAt: null,
       id: `user-${this.users.length + 1}`,
     };
 
