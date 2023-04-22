@@ -43,7 +43,9 @@ export class ProjectsController {
   })
   @HttpCode(HttpStatus.CREATED)
   async create(@Body() createProjectDto: CreateProjectDto) {
-    return await this.projectsRepository.create(createProjectDto);
+    const data = await this.projectsRepository.create(createProjectDto);
+
+    return { data };
   }
 
   @Public()
