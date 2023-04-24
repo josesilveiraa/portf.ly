@@ -17,7 +17,7 @@ model User {
   projects  Project[]
   password  String
   createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  updatedAt DateTime  @updatedAt @default(now())
 }
 
 model Project {
@@ -30,5 +30,5 @@ model Project {
   User         User?    @relation(fields: [userId], references: [id])
   userId       String?
   createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  updatedAt    DateTime @updatedAt @default(now())
 }
