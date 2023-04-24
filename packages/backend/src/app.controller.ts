@@ -1,4 +1,11 @@
-import { Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Request,
+  UseGuards,
+} from '@nestjs/common';
 import { AuthService } from './auth/auth.service';
 import { Public } from './auth/is-public.decorator';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
@@ -38,6 +45,11 @@ export class AppController {
   @Post('auth/login')
   async login(@Request() req) {
     return this.authService.login(req.user);
+  }
+
+  @Public()
+  async reauthenticate(@Body() body) {
+    return this.authService.reauthenticate(body);
   }
 
   @ApiOperation({ summary: 'Gets information from a access token.' })
