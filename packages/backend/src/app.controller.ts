@@ -24,6 +24,11 @@ class LoginPayload {
   access_token: string;
 }
 
+class RefreshPayload {
+  @ApiProperty()
+  refresh_token: string;
+}
+
 class LoginRequest {
   @ApiProperty()
   email: string;
@@ -48,6 +53,8 @@ export class AppController {
   }
 
   @Public()
+  @ApiBody({ type: RefreshPayload })
+  @Post('auth/refresh')
   async reauthenticate(@Body() body) {
     return this.authService.reauthenticate(body);
   }
