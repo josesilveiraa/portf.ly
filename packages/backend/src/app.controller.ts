@@ -22,6 +22,9 @@ import {
 class LoginPayload {
   @ApiProperty()
   access_token: string;
+
+  @ApiProperty()
+  refresh_token: string;
 }
 
 class RefreshPayload {
@@ -44,7 +47,10 @@ export class AppController {
 
   @Public()
   @ApiOperation({ summary: 'Logs an user in' })
-  @ApiOkResponse({ description: 'The user access token.', type: LoginPayload })
+  @ApiOkResponse({
+    description: 'The user access and refresh token.',
+    type: LoginPayload,
+  })
   @ApiBody({ type: LoginRequest })
   @UseGuards(LocalAuthGuard)
   @Post('auth/login')
@@ -53,6 +59,11 @@ export class AppController {
   }
 
   @Public()
+  @ApiOperation({ summary: 'Refreshes a JWT' })
+  @ApiOkResponse({
+    description: 'The user access and refresh token.',
+    type: LoginPayload,
+  })
   @ApiBody({ type: RefreshPayload })
   @Post('auth/refresh')
   async reauthenticate(@Body() body) {
