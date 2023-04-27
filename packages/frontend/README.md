@@ -23,10 +23,8 @@ $ yarn dev
 
 ## 🚀 Used technologies
 
-- SSR
 - Next.js
 - TailwindCSS
-- DaisyUI
 
 ## ✅ TODO (in order of priority)
 
